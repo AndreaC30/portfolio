@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio — Andrea Cruz Hernández
 
-## Getting Started
+![Portfolio](./public/og-image.png)
 
-First, run the development server:
+Portfolio profesional de **Andrea Guadalupe Cruz Hernández** — Full Stack Developer especializada en observabilidad industrial, automatización e IA.
+
+Construido con **Next.js 15**, **TypeScript**, **TailwindCSS**, **shadcn/ui** y **Framer Motion**.
+
+## 🌐 URL
+
+**https://resume.andreacruz.es**
+
+## 📋 Secciones
+
+| Página | Descripción |
+|--------|-------------|
+| **Home** | Landing con efecto máquina de escribir y gradientes |
+| **Sobre mí** | Perfil profesional, enfoque técnico y filosofía de trabajo |
+| **Experiencia** | Timeline vertical — CIVIR (actual) y Teleperformance |
+| **Skills** | 6 categorías técnicas con badges animados |
+| **Proyectos** | 4 proyectos destacados con stack y enlaces |
+| **Contacto** | Email, GitHub, LinkedIn + formulario de contacto |
+
+## 🛠️ Stack
+
+| Tecnología | Uso |
+|------------|-----|
+| Next.js 15 (App Router) | Framework React |
+| TypeScript | Tipado estático |
+| TailwindCSS v4 | Estilos utilitarios |
+| shadcn/ui | Componentes de interfaz |
+| Framer Motion | Animaciones |
+| Lucide React | Iconografía |
+| Inter + JetBrains Mono | Tipografía |
+
+## 🚀 Desarrollo local
 
 ```bash
+git clone https://github.com/AndreaC30/portfolio.git
+cd portfolio
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Abrir http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📦 Build producción
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🎨 Diseño
 
-## Learn More
+- **Estilo:** tech dashboard oscuro, minimalista técnico
+- **Colores:** Negro carbón, azul eléctrico (#3b82f6), verde observabilidad (#10b981)
+- **Animaciones:** Fade-in en scroll, hover effects, typing effect en Hero
+- **Tipografía:** Inter (general) + JetBrains Mono (código/técnico)
 
-To learn more about Next.js, take a look at the following resources:
+## 📄 Licencia
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+© 2026 Andrea Guadalupe Cruz Hernández. Todos los derechos reservados.
