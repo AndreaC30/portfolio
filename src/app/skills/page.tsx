@@ -1,6 +1,6 @@
 "use client"
 
-import { Monitor, Server, Activity, Cpu, Terminal, Sparkles } from "lucide-react"
+import { Monitor, Server, Activity, Cpu, Terminal, Sparkles, Workflow, ListTodo } from "lucide-react"
 import { PageTransition } from "@/components/fade-in"
 import FadeIn from "@/components/fade-in"
 import { StaggerContainer, StaggerItem } from "@/components/stagger"
@@ -14,6 +14,8 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   cpu: Cpu,
   terminal: Terminal,
   sparkles: Sparkles,
+  workflow: Workflow,
+  trello: ListTodo,
 }
 
 export default function SkillsPage() {

@@ -36,6 +36,8 @@ export const aboutText = `Full Stack Developer especializada en automatización,
 
 Gestiono mis propios servidores Linux (VPS): configuro Nginx como reverse proxy, administro dominios y subdominios, despliego con Docker Compose, y aseguro todo con SSL mediante Let's Encrypt. Cada proyecto que construyo pasa por un ciclo completo: desarrollo local, despliegue en producción y monitorización continua.
 
+Mi metodología de trabajo se basa en dividir cada proyecto en mini tareas modulares, documentadas en pliegos de despliegue que detallan cada paso técnico. Uso Jira para crear tableros Kanban, organizar las tareas por fases e ir completándolas una a una. Este enfoque me permite mantener el foco, validar cada entrega y escalar proyectos complejos sin perder el control.
+
 Mi stack de agentes IA incluye Hermes Agent (Nous Research) con skills personalizadas, herramientas MCP, y modelos como DeepSeek V4 y OpenCode. Utilizo estos agentes para automatizar flujos de trabajo complejos, desde code review hasta despliegues y monitorización.
 
 Automatizo procesos empresariales con n8n (self-hosted), desarrollo módulos personalizados para Odoo 19, y acelero mi productividad con Cursor IDE.`
@@ -54,7 +56,8 @@ export const experience: Experience[] = [
       "Gestión de infraestructura Linux: VPS, Nginx, Docker, SSL, dominios y subdominios",
       "Orquestación de agentes IA con Hermes Agent, skills, MCPs y modelos OpenCode",
       "Desarrollo asistido por IA con Cursor IDE para acelerar entregas",
-      "React + Tailwind + Next.js para dashboards y aplicaciones web modernas",
+      "Gestión de proyectos con Jira: tableros Kanban, tareas por fases y pliegos de despliegue",
+      "Documentación técnica: pliegos de despliegue, README, specs modulares por proyecto",
     ],
   },
   {
@@ -91,6 +94,11 @@ export const skillCategories: SkillCategory[] = [
     name: "AI Agents & LLMs",
     icon: "sparkles",
     skills: ["Hermes Agent", "OpenCode", "DeepSeek V4", "MCPs", "Skills", "Cursor"],
+  },
+  {
+    name: "Proyectos & Metodología",
+    icon: "trello",
+    skills: ["Jira", "Kanban", "Pliegos de despliegue", "Tareas modulares", "Fases"],
   },
   {
     name: "Automation & ERP",
@@ -143,5 +151,7 @@ export const keywords = [
   "Odoo 19 Developer",
   "Docker",
   "Linux Administrator",
+  "Jira",
+  "Kanban",
   "Self-Hosted Infrastructure",
 ]

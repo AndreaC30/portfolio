@@ -7,7 +7,7 @@ import { StaggerContainer, StaggerItem } from "@/components/stagger"
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
 import { aboutText, skillCategories } from "@/lib/data"
-import { Monitor, Server, Cpu, Terminal, Sparkles, Code2, Workflow, Video } from "lucide-react"
+import { Monitor, Server, Cpu, Terminal, Sparkles, Code2, Workflow, Video, ListTodo } from "lucide-react"
 
 const iconMap: Record<string, React.ReactNode> = {
   monitor: <Monitor className="w-5 h-5" />,
@@ -18,6 +18,7 @@ const iconMap: Record<string, React.ReactNode> = {
   sparkles: <Sparkles className="w-5 h-5" />,
   workflow: <Workflow className="w-5 h-5" />,
   video: <Video className="w-5 h-5" />,
+  trello: <ListTodo className="w-5 h-5" />,
 }
 
 export default function AboutPage() {
