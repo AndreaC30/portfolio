@@ -109,10 +109,10 @@ export default function ContactPage() {
         </FadeIn>
 
         {/* Two-column layout */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16">
           {/* Left: Contact Info */}
           <FadeIn delay={0.1} direction="left">
-            <div className="md:col-span-2 space-y-8">
+            <div className="lg:col-span-2 space-y-8">
               <StaggerContainer staggerDelay={0.05}>
                 <div className="space-y-4">
                   {contactLinks.map((link) => (
@@ -154,7 +154,7 @@ export default function ContactPage() {
 
           {/* Right: Contact Form */}
           <FadeIn delay={0.2} direction="right">
-            <div className="md:col-span-3">
+            <div className="lg:col-span-3">
               <div className="rounded-xl border border-border/50 bg-card p-6 sm:p-8">
                 {status === "sent" ? (
                   /* Success */
