@@ -14,7 +14,17 @@ import {
   Terminal,
   Download,
   Send,
+  Monitor,
+  Server,
+  Workflow,
 } from "lucide-react"
+
+const categoryIcons: Record<string, React.ReactNode> = {
+  monitor: <Monitor className="w-4 h-4" />,
+  server: <Server className="w-4 h-4" />,
+  terminal: <Terminal className="w-4 h-4" />,
+  workflow: <Workflow className="w-4 h-4" />,
+}
 
 function TypingTitle({ text }: { text: string }) {
   const [displayed, setDisplayed] = useState("")
@@ -71,7 +81,6 @@ function HeroParallaxBlobs() {
 
   return (
     <div ref={containerRef} className="absolute inset-0 pointer-events-none overflow-hidden">
-      {/* Taste-style ambient orbs — larger, more visible */}
       <motion.div
         className="orb top-[-20%] -left-40 w-[40rem] h-[40rem] bg-primary/[0.04] blur-[140px]"
         style={{ y: blob1Y, x: blob1X, scale: blob1Scale, opacity: blob1Opacity }}
@@ -89,12 +98,11 @@ function HeroParallaxBlobs() {
 }
 
 export default function Home() {
-  const allSkills = skillCategories.flatMap((cat) => cat.skills)
   const aboutPreview = aboutText.split("\n\n")[0]
 
   return (
     <PageTransition>
-      {/* Hero — asymmetric, left-aligned (DESIGN_VARIANCE=7) */}
+      {/* Hero */}
       <section className="relative min-h-[100dvh] md:min-h-[100dvh] flex items-center overflow-hidden bg-dot-grid">
         <HeroParallaxBlobs />
 
@@ -122,7 +130,7 @@ export default function Home() {
               </p>
             </FadeIn>
 
-            {/* CTA Buttons — emil-design-eng: active scale, taste sheen on primary */}
+            {/* CTA Buttons */}
             <FadeIn delay={0.8} direction="up">
               <div className="flex flex-wrap items-center gap-3">
                 <Link
@@ -149,12 +157,10 @@ export default function Home() {
               </div>
             </FadeIn>
           </div>
-
-          {/* Right-side accent — subtle geometric hint (empty space = breathing room) */}
         </div>
       </section>
 
-      {/* About Preview — clean, no eye-brow overuse */}
+      {/* About Preview */}
       <section className="py-16 md:py-24 px-6">
         <div className="max-w-4xl mx-auto">
           <FadeIn delay={0.1} direction="up">
@@ -183,30 +189,38 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Tech Stack — staggered pill badges */}
+      {/* Tech Stack — category cards instead of flat badge list */}
       <section className="py-16 md:py-24 px-6 border-t border-border/50">
         <div className="max-w-4xl mx-auto">
           <FadeIn delay={0.1} direction="up">
             <div className="text-center mb-10">
               <h2 className="text-2xl sm:text-3xl font-bold mb-3 font-heading">
-                Tech Stack
+                Con qué trabajo
               </h2>
-              <p className="text-muted-foreground">
-                Tecnologías con las que trabajo habitualmente
-              </p>
             </div>
           </FadeIn>
 
-          <StaggerContainer staggerDelay={0.04}>
-            <div className="flex flex-wrap justify-center gap-3">
-              {allSkills.map((skill) => (
-                <StaggerItem key={skill}>
-                  <Badge
-                    variant="secondary"
-                    className="px-4 py-2 text-sm rounded-lg border-primary/10 hover:border-primary/30 hover:bg-primary/5 transition-colors duration-200 active:scale-[0.97] cursor-default"
-                  >
-                    {skill}
-                  </Badge>
+          <StaggerContainer staggerDelay={0.05}>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {skillCategories.map((cat) => (
+                <StaggerItem key={cat.name}>
+                  <div className="p-4 rounded-xl bg-card border border-border/50 hover:border-primary/20 transition-colors duration-200 text-center">
+                    <div className="text-primary mb-2 flex justify-center">
+                      {categoryIcons[cat.icon] || <Terminal className="w-4 h-4" />}
+                    </div>
+                    <h3 className="text-sm font-semibold mb-2">{cat.name}</h3>
+                    <div className="flex flex-wrap justify-center gap-1">
+                      {cat.skills.slice(0, 4).map((skill) => (
+                        <Badge
+                          key={skill}
+                          variant="secondary"
+                          className="text-xs border-primary/10 hover:border-primary/30 hover:bg-primary/5 transition-colors duration-200 cursor-default"
+                        >
+                          {skill}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
                 </StaggerItem>
               ))}
             </div>

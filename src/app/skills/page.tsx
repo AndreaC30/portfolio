@@ -1,6 +1,6 @@
 "use client"
 
-import { Monitor, Server, Activity, Cpu, Terminal, Sparkles, Workflow, ListTodo } from "lucide-react"
+import { Monitor, Server, Terminal, Workflow } from "lucide-react"
 import { PageTransition } from "@/components/fade-in"
 import FadeIn from "@/components/fade-in"
 import { StaggerContainer, StaggerItem } from "@/components/stagger"
@@ -10,12 +10,8 @@ import { skillCategories } from "@/lib/data"
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   monitor: Monitor,
   server: Server,
-  activity: Activity,
-  cpu: Cpu,
   terminal: Terminal,
-  sparkles: Sparkles,
   workflow: Workflow,
-  trello: ListTodo,
 }
 
 export default function SkillsPage() {
@@ -26,15 +22,14 @@ export default function SkillsPage() {
         <div className="mb-16 text-center">
           <FadeIn delay={0.1}>
             <div className="inline-flex items-center gap-3 mb-4">
-              <Sparkles className="w-8 h-8 text-primary" />
+              <Terminal className="w-8 h-8 text-primary" />
               <h1 className="text-4xl sm:text-5xl font-bold tracking-tight heading-balanced">
                 Skills
               </h1>
             </div>
             <Separator className="mx-auto my-6 w-24 bg-primary/50" />
             <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-              Tecnologías y herramientas con las que trabajo día a día para
-              construir soluciones modernas e integradas.
+              Tecnologías organizadas por área de especialización.
             </p>
           </FadeIn>
         </div>

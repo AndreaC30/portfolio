@@ -18,29 +18,27 @@ export interface Project {
   description: string
   stack: string[]
   problem: string
+  solution: string
+  implementation: string
+  result: string
   image?: string
   github?: string
+  demo?: string
 }
 
 export const personalInfo = {
   name: "Andrea Guadalupe Cruz Hernández",
-  title: "Full Stack Developer | Agentes IA · Automatización · Infraestructura Self-Hosted",
-  subtitle: "Python · React · FastAPI · n8n · Odoo 19 · Hermes Agent · Docker · Linux",
+  title: "Full Stack Developer. Construyo aplicaciones web y automatizaciones",
+  subtitle: "Desarrollo web completo, automatización de procesos e infraestructura self-hosted",
   email: "andreacruz_30@hotmail.com",
   github: "https://github.com/AndreaC30",
   linkedin: "https://www.linkedin.com/in/andreacruzhernandez/",
   location: "Spain",
 }
 
-export const aboutText = `Full Stack Developer especializada en automatización, agentes de IA y gestión de infraestructura self-hosted. Trabajo con Python y React para construir aplicaciones web completas, desde el backend con FastAPI hasta el frontend con Next.js y Tailwind.
+export const aboutText = `Construyo aplicaciones web completas y automatizaciones que ahorran horas de trabajo manual. Tomo proyectos desde la idea inicial hasta producción: analizo el problema, defino la solución, desarrollo el backend con Python y FastAPI, diseño el frontend con React y Next.js, despliego con Docker y monitorizo que todo funcione correctamente.
 
-Gestiono mis propios servidores Linux (VPS): configuro Nginx como reverse proxy, administro dominios y subdominios, despliego con Docker Compose, y aseguro todo con SSL mediante Let's Encrypt. Cada proyecto que construyo pasa por un ciclo completo: desarrollo local, despliegue en producción y monitorización continua.
-
-Mi metodología de trabajo se basa en dividir cada proyecto en mini tareas modulares, documentadas en pliegos de despliegue que detallan cada paso técnico. Uso Jira para crear tableros Kanban, organizar las tareas por fases e ir completándolas una a una. Este enfoque me permite mantener el foco, validar cada entrega y escalar proyectos complejos sin perder el control.
-
-Mi stack de agentes IA incluye Hermes Agent (Nous Research) con skills personalizadas, herramientas MCP, y modelos como DeepSeek V4 y OpenCode. Utilizo estos agentes para automatizar flujos de trabajo complejos, desde code review hasta despliegues y monitorización.
-
-Automatizo procesos empresariales con n8n (self-hosted), desarrollo módulos personalizados para Odoo 19, y acelero mi productividad con Cursor IDE.`
+Divido cada proyecto en tareas pequeñas con entregas claras. Uso tableros Kanban para mantener el foco y valido cada fase antes de avanzar. Esto me permite entregar rápido, con calidad y sin perder el control cuando los proyectos crecen.`
 
 export const experience: Experience[] = [
   {
@@ -48,16 +46,12 @@ export const experience: Experience[] = [
     role: "Full Stack Developer",
     period: "2024 - Actualidad",
     current: true,
-    description: "Desarrollo full stack con enfoque en automatización con agentes IA, gestión de infraestructura y ERP con Odoo 19.",
+    description: "Desarrollo full stack con enfoque en automatización, infraestructura self-hosted y ERP con Odoo 19.",
     highlights: [
-      "Automatización de procesos con n8n self-hosted, webhooks y APIs REST",
-      "Desarrollo y despliegue de aplicaciones web con Python (FastAPI) + React",
-      "Personalización de módulos para Odoo 19 e integración con sistemas externos",
-      "Gestión de infraestructura Linux: VPS, Nginx, Docker, SSL, dominios y subdominios",
-      "Orquestación de agentes IA con Hermes Agent, skills, MCPs y modelos OpenCode",
-      "Desarrollo asistido por IA con Cursor IDE para acelerar entregas",
-      "Gestión de proyectos con Jira: tableros Kanban, tareas por fases y pliegos de despliegue",
-      "Documentación técnica: pliegos de despliegue, README, specs modulares por proyecto",
+      "Automatización de procesos empresariales con n8n self-hosted y APIs REST",
+      "Desarrollo de aplicaciones web completas con Python (FastAPI) y React",
+      "Gestión de infraestructura Linux: VPS, Docker, Nginx, SSL y dominios",
+      "Módulos personalizados para Odoo 19 e integración con sistemas externos",
     ],
   },
   {
@@ -67,9 +61,9 @@ export const experience: Experience[] = [
     current: false,
     description: "Soporte técnico especializado en redes y resolución de incidencias para clientes empresariales.",
     highlights: [
-      "Diagnóstico y resolución de incidencias de red",
-      "Soporte técnico a clientes empresariales",
-      "Documentación técnica y procedimientos",
+      "Diagnóstico y resolución de incidencias de red para clientes empresariales",
+      "Soporte técnico con altos niveles de satisfacción del cliente",
+      "Documentación técnica y mejora de procedimientos internos",
     ],
   },
 ]
@@ -86,72 +80,67 @@ export const skillCategories: SkillCategory[] = [
     skills: ["Python", "FastAPI", "Django", "PostgreSQL"],
   },
   {
-    name: "Infra & DevOps",
+    name: "Infraestructura",
     icon: "terminal",
-    skills: ["Docker", "Nginx", "Linux VPS", "SSL", "Dominios", "Git", "GitHub"],
+    skills: ["Docker", "Nginx", "Linux VPS", "SSL", "Git"],
   },
   {
-    name: "AI Agents & LLMs",
-    icon: "sparkles",
-    skills: ["Hermes Agent", "OpenCode", "DeepSeek V4", "MCPs", "Skills", "Cursor"],
-  },
-  {
-    name: "Proyectos & Metodología",
-    icon: "trello",
-    skills: ["Jira", "Kanban", "Pliegos de despliegue", "Tareas modulares", "Fases"],
-  },
-  {
-    name: "Automation & ERP",
+    name: "Automatización",
     icon: "workflow",
-    skills: ["n8n", "Odoo 19", "Node-RED", "REST APIs", "Webhooks"],
+    skills: ["n8n", "Odoo 19", "APIs REST", "Webhooks"],
   },
 ]
 
 export const projects: Project[] = [
   {
-    title: "Hermes Agent — Automatización con IA",
-    description: "Configuración y uso de Hermes Agent (Nous Research) con skills personalizadas, herramientas MCP, cron jobs y despliegue de agentes autónomos para tareas de desarrollo, monitorización y automatización.",
-    stack: ["Hermes Agent", "Python", "MCPs", "Docker", "Linux"],
-    problem: "Automatizar flujos de trabajo complejos usando agentes IA con razonamiento, tool-calling y ejecución multi-step, reduciendo intervención manual en tareas repetitivas.",
+    title: "Hermes Agent. Automatización con IA",
+    description: "Agentes de IA autónomos que ejecutan tareas de desarrollo, code review y monitorización.",
+    stack: ["Hermes Agent", "Python", "Docker", "Linux"],
+    problem: "Tareas repetitivas de desarrollo, revisión de código y despliegue consumían horas de trabajo manual cada semana.",
+    solution: "Configuré agentes de IA autónomos con Hermes Agent que ejecutan tareas multi-paso usando skills personalizadas y herramientas MCP.",
+    implementation: "Hermes Agent con skills y MCPs personalizados, Python, Docker para despliegue aislado.",
+    result: "Reducción del tiempo dedicado a tareas repetitivas y despliegues más rápidos con menos intervención manual.",
     github: "https://github.com/AndreaC30",
   },
   {
     title: "Infraestructura Self-Hosted",
-    description: "Gestión completa de servidores Linux con Nginx como reverse proxy, múltiples dominios y subdominios, Docker Compose para despliegues, SSL con Let's Encrypt y monitorización de servicios.",
-    stack: ["Linux", "Nginx", "Docker", "SSL", "Systemd", "Python"],
-    problem: "Centralizar el despliegue de múltiples aplicaciones web en una sola VPS con aislamiento, seguridad y alta disponibilidad, sin depender de plataformas cloud gestionadas.",
+    description: "Gestión de servidores Linux con múltiples aplicaciones web en una sola VPS.",
+    stack: ["Linux", "Nginx", "Docker", "SSL"],
+    problem: "Varias aplicaciones web necesitaban ejecutarse en un solo servidor sin conflictos, con HTTPS y alta disponibilidad.",
+    solution: "Configuré un servidor Linux completo con Nginx como reverse proxy, Docker Compose para aislamiento y SSL automático con Let's Encrypt.",
+    implementation: "Linux VPS, Nginx reverse proxy, Docker Compose, Let's Encrypt, systemd para servicios.",
+    result: "Múltiples aplicaciones corriendo en un solo servidor, aisladas, con HTTPS y monitorización continua.",
     github: "https://github.com/AndreaC30",
   },
   {
-    title: "n8n Automation Workflows",
-    description: "Flujos de automatización empresarial con n8n self-hosted: integración de APIs, procesamiento de datos, notificaciones por Telegram y agentes IA conectados mediante webhooks.",
-    stack: ["n8n", "Python", "FastAPI", "Docker", "Webhooks"],
-    problem: "Automatizar procesos de negocio repetitivos y conectar sistemas dispares sin código complejo, usando n8n como orquestador central con agentes IA integrados.",
+    title: "n8n Workflows de Automatización",
+    description: "Flujos de automatización empresarial que conectan sistemas y procesan datos sin intervención manual.",
+    stack: ["n8n", "Python", "FastAPI", "Docker"],
+    problem: "Procesos de negocio manuales requerían intervención constante para mover datos entre sistemas y generar notificaciones.",
+    solution: "Creé flujos de automatización con n8n self-hosted que conectan APIs, procesan datos y notifican por Telegram automáticamente.",
+    implementation: "n8n self-hosted en Docker, Python y FastAPI para webhooks personalizados.",
+    result: "Procesos que antes tomaban horas ahora se ejecutan automáticamente, con notificaciones en tiempo real.",
     github: "https://github.com/AndreaC30",
   },
   {
-    title: "Odoo 19 Custom Modules",
-    description: "Desarrollo de módulos personalizados para Odoo 19: automatización de procesos, dashboards e integración con sistemas externos vía API REST.",
-    stack: ["Python", "Odoo 19", "PostgreSQL", "Docker", "n8n"],
-    problem: "Extender Odoo 19 para cubrir flujos de trabajo específicos no disponibles en los módulos estándar, integrando con n8n para automatización end-to-end.",
+    title: "Odoo 19. Módulos Personalizados",
+    description: "Módulos a medida para Odoo 19 que extienden funcionalidades estándar del ERP.",
+    stack: ["Python", "Odoo 19", "PostgreSQL", "n8n"],
+    problem: "Odoo 19 no cubría flujos de trabajo específicos del negocio y necesitaba integrarse con sistemas externos.",
+    solution: "Desarrollé módulos personalizados que extienden Odoo 19 con funcionalidades a medida e integración vía API REST.",
+    implementation: "Python, framework de Odoo 19, PostgreSQL, integración con n8n para automatización end-to-end.",
+    result: "Flujos de trabajo completos automatizados dentro de Odoo, conectados con sistemas externos sin intervención manual.",
     github: "https://github.com/AndreaC30",
   },
 ]
 
 export const keywords = [
   "Full Stack Developer",
-  "Python Developer",
-  "React Developer",
-  "FastAPI Developer",
-  "Next.js Developer",
-  "AI Agents Engineer",
-  "Hermes Agent",
-  "OpenCode",
-  "n8n Automation",
-  "Odoo 19 Developer",
+  "Python",
+  "React",
+  "FastAPI",
   "Docker",
-  "Linux Administrator",
-  "Jira",
-  "Kanban",
-  "Self-Hosted Infrastructure",
+  "n8n",
+  "Odoo",
+  "Linux",
 ]

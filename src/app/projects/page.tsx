@@ -7,7 +7,6 @@ import { StaggerContainer, StaggerItem } from "@/components/stagger"
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -19,10 +18,21 @@ import { projects } from "@/lib/data"
 import { cn } from "@/lib/utils"
 import {
   Lightbulb,
+  Sparkles,
+  Code2,
+  TrendingUp,
   FolderGit2,
+  Monitor,
   ArrowRight,
 } from "lucide-react"
 import Link from "next/link"
+
+const sectionConfig = [
+  { key: "problem" as const, icon: Lightbulb, label: "PROBLEMA", color: "text-chart-2", bg: "bg-chart-2/10" },
+  { key: "solution" as const, icon: Sparkles, label: "SOLUCIÓN", color: "text-primary", bg: "bg-primary/10" },
+  { key: "implementation" as const, icon: Code2, label: "IMPLEMENTACIÓN", color: "text-chart-5", bg: "bg-chart-5/10" },
+  { key: "result" as const, icon: TrendingUp, label: "RESULTADO", color: "text-chart-3", bg: "bg-chart-3/10" },
+]
 
 export default function ProjectsPage() {
   return (
@@ -39,13 +49,12 @@ export default function ProjectsPage() {
             </div>
             <Separator className="bg-primary/30 max-w-[200px]" />
             <p className="mt-6 text-muted-foreground text-lg max-w-2xl">
-              Soluciones técnicas que conectan el mundo industrial con el
-              desarrollo web moderno.
+              Cada proyecto empieza con un problema real y termina con una solución en producción.
             </p>
           </div>
         </FadeIn>
 
-        {/* Project Cards Grid — staggered */}
+        {/* Project Cards Grid */}
         <StaggerContainer staggerDelay={0.05}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {projects.map((project) => (
@@ -57,46 +66,80 @@ export default function ProjectsPage() {
                       "hover:border-primary/25"
                     )}
                   >
-                    <CardHeader className="relative z-10">
+                    <CardHeader className="relative z-10 pb-3">
                       <CardTitle className="text-xl font-semibold tracking-tight transition-colors duration-300 group-hover:text-primary">
                         {project.title}
                       </CardTitle>
-                      <CardDescription className="text-sm leading-relaxed mt-2">
-                        {project.description}
-                      </CardDescription>
                     </CardHeader>
 
                     <CardContent className="flex-1 space-y-4 relative z-10">
-                      {/* Problem Section */}
-                      <div className="rounded-lg bg-muted/50 border border-border/40 p-4 transition-colors duration-300 group-hover:border-primary/20">
-                        <div className="flex items-start gap-3">
-                          <Lightbulb className="h-5 w-5 text-chart-2 mt-0.5 shrink-0" />
-                          <div>
-                            <span className="text-xs font-semibold uppercase tracking-wider text-chart-2">
-                              Problema que resuelve
-                            </span>
-                            <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-                              {project.problem}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Stack Badges */}
-                      <div className="flex flex-wrap gap-2">
-                        {project.stack.map((tech) => (
-                          <Badge
-                            key={tech}
-                            variant="secondary"
-                            className="text-xs font-mono transition-colors duration-200 hover:bg-primary/10 hover:text-primary hover:border-primary/30 cursor-default"
+                      {/* Problem → Solution → Implementation → Result */}
+                      {sectionConfig.map(({ key, icon: Icon, label, color, bg }) => {
+                        const text = project[key]
+                        if (key === "implementation") {
+                          return (
+                            <div
+                              key={key}
+                              className="rounded-lg bg-muted/50 border border-border/40 p-4 transition-colors duration-300 group-hover:border-primary/20"
+                            >
+                              <div className="flex items-start gap-3">
+                                <div className={cn("p-1.5 rounded-md shrink-0 mt-0.5", bg)}>
+                                  <Icon className={cn("h-4 w-4", color)} />
+                                </div>
+                                <div className="min-w-0">
+                                  <span
+                                    className={cn(
+                                      "text-xs font-semibold uppercase tracking-wider",
+                                      color
+                                    )}
+                                  >
+                                    {label}
+                                  </span>
+                                  <div className="flex flex-wrap gap-1.5 mt-2">
+                                    {project.stack.slice(0, 4).map((tech) => (
+                                      <Badge
+                                        key={tech}
+                                        variant="secondary"
+                                        className="text-xs font-mono cursor-default"
+                                      >
+                                        {tech}
+                                      </Badge>
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          )
+                        }
+                        return (
+                          <div
+                            key={key}
+                            className="rounded-lg bg-muted/50 border border-border/40 p-4 transition-colors duration-300 group-hover:border-primary/20"
                           >
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
+                            <div className="flex items-start gap-3">
+                              <div className={cn("p-1.5 rounded-md shrink-0 mt-0.5", bg)}>
+                                <Icon className={cn("h-4 w-4", color)} />
+                              </div>
+                              <div>
+                                <span
+                                  className={cn(
+                                    "text-xs font-semibold uppercase tracking-wider",
+                                    color
+                                  )}
+                                >
+                                  {label}
+                                </span>
+                                <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+                                  {text}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        )
+                      })}
                     </CardContent>
 
-                    <CardFooter className="relative z-10">
+                    <CardFooter className="relative z-10 flex flex-wrap gap-2">
                       {project.github && (
                         <Link
                           href={project.github}
@@ -106,13 +149,39 @@ export default function ProjectsPage() {
                           <Button
                             variant="outline"
                             size="sm"
-                            className="group/btn border-primary/30 transition-colors duration-200 transition-transform duration-150 active:scale-[0.97] hover:border-primary/60 hover:bg-primary/5"
+                            className="group/btn border-primary/30 transition-colors duration-200 active:scale-[0.97] hover:border-primary/60 hover:bg-primary/5"
                           >
                             <FolderGit2 className="h-4 w-4 mr-2" />
-                            Ver en GitHub
-                            <ArrowRight className="h-3 w-3 ml-2 opacity-0 -translate-x-1 transition-opacity duration-200 ease-[0.23,1,0.32,1] transition-transform duration-200 ease-[0.23,1,0.32,1] group-hover/btn:opacity-100 group-hover/btn:translate-x-0" />
+                            Ver código
+                            <ArrowRight className="h-3 w-3 ml-2 opacity-0 -translate-x-1 transition-all duration-200 ease-[0.23,1,0.32,1] group-hover/btn:opacity-100 group-hover/btn:translate-x-0" />
                           </Button>
                         </Link>
+                      )}
+                      {project.demo ? (
+                        <Link
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="group/btn border-border/50 transition-colors duration-200 active:scale-[0.97] hover:border-primary/40 hover:bg-primary/5"
+                          >
+                            <Monitor className="h-4 w-4 mr-2" />
+                            Ver demo
+                          </Button>
+                        </Link>
+                      ) : (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          disabled
+                          className="border-border/30 text-muted-foreground/50 cursor-not-allowed"
+                        >
+                          <Monitor className="h-4 w-4 mr-2" />
+                          Demo próximamente
+                        </Button>
                       )}
                     </CardFooter>
                   </Card>

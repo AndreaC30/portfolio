@@ -22,11 +22,11 @@ const BASE_URL = "https://resume.andreacruz.es"
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Andrea Cruz | Full Stack Developer – Agentes IA, Automatización & Infraestructura Self-Hosted",
+    default: "Andrea Cruz. Full Stack Developer",
     template: "%s | Andrea Cruz",
   },
   description:
-    "Full Stack Developer especializada en agentes IA (Hermes, OpenCode), automatización con n8n, Odoo 19, y gestión de infraestructura self-hosted (Linux, Docker, Nginx, SSL). Python, React, FastAPI.",
+    "Construyo aplicaciones web y automatizaciones que resuelven problemas reales. Desarrollo full stack con Python, React y FastAPI, desplegado en infraestructura self-hosted.",
   keywords: keywords.join(", "),
   authors: [{ name: "Andrea Guadalupe Cruz Hernández", url: BASE_URL }],
   creator: "Andrea Guadalupe Cruz Hernández",
@@ -37,25 +37,25 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_ES",
-    siteName: "Andrea Cruz – Portfolio",
-    title: "Andrea Cruz | Full Stack Developer – Agentes IA, Automatización & Infraestructura Self-Hosted",
+    siteName: "Andrea Cruz. Portfolio",
+    title: "Andrea Cruz. Full Stack Developer",
     description:
-      "Full Stack Developer especializada en agentes IA (Hermes, OpenCode), automatización con n8n, Odoo 19, y gestión de infraestructura self-hosted (Linux, Docker, Nginx, SSL). Python, React, FastAPI.",
+      "Construyo aplicaciones web y automatizaciones que resuelven problemas reales. Desarrollo full stack con Python, React y FastAPI.",
     url: BASE_URL,
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Andrea Cruz | Full Stack Developer",
+        alt: "Andrea Cruz. Full Stack Developer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Andrea Cruz | Full Stack Developer – Agentes IA & Automatización",
+    title: "Andrea Cruz. Full Stack Developer",
     description:
-      "Full Stack Developer especializada en agentes IA (Hermes, OpenCode), automatización con n8n, Odoo 19, e infraestructura self-hosted.",
+      "Construyo aplicaciones web y automatizaciones que resuelven problemas reales. Python, React, FastAPI.",
     images: ["/og-image.png"],
   },
   robots: {

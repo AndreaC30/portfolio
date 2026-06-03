@@ -61,8 +61,7 @@ export default function ExperiencePage() {
             </div>
             <Separator className="mx-auto my-6 w-24 bg-primary/50" />
             <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-              Trayectoria profesional combinando desarrollo software, sistemas
-              industriales y observabilidad.
+              Dónde he trabajado y qué resultados he conseguido.
             </p>
           </FadeIn>
         </div>
