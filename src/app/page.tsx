@@ -17,7 +17,8 @@ export default function Home() {
       {/* Hero — static, no typing, no blobs */}
       <section className="relative min-h-[100dvh] flex items-center overflow-hidden bg-dot-grid">
         {/* Single subtle ambient orb — CSS only, no framer-motion */}
-        <div className="absolute top-[-10%] -right-40 w-[40rem] h-[40rem] rounded-full bg-primary/[0.03] blur-[140px] pointer-events-none" />
+        <div className="absolute top-[-10%] -right-40 w-[40rem] h-[40rem] rounded-full bg-[#2563EB]/[0.04] blur-[140px] pointer-events-none" />
+        <div className="absolute bottom-[-20%] -left-40 w-[35rem] h-[35rem] rounded-full bg-[#7C3AED]/[0.03] blur-[130px] pointer-events-none" />
 
         <div className="relative z-10 w-full max-w-5xl mx-auto px-6 sm:px-8 py-16 md:py-0">
           <div className="md:max-w-[65%]">
@@ -41,7 +42,7 @@ export default function Home() {
             <div className="flex flex-wrap items-center gap-3">
               <Link
                 href="/projects"
-                className="sheen inline-flex items-center gap-2 rounded-xl px-7 h-12 text-sm font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200 ease-out active:scale-[0.97] shadow-[0_8px_24px_-12px_rgba(0,0,0,0.4)] hover:shadow-[0_14px_32px_-12px_rgba(0,0,0,0.55)]"
+                className="sheen inline-flex items-center gap-2 rounded-xl px-7 h-12 text-sm font-semibold btn-gradient active:scale-[0.97]"
               >
                 <ChevronRight className="w-4 h-4" />
                 Ver Proyectos

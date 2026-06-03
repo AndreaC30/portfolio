@@ -188,7 +188,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="inline-flex items-center justify-center gap-2 h-12 px-8 text-base font-semibold bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                className="inline-flex items-center justify-center gap-2 h-12 px-8 text-base font-semibold btn-gradient rounded-xl disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {status === "sending" ? (
                   <>
