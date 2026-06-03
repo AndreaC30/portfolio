@@ -1,8 +1,3 @@
-"use client"
-
-import FadeIn, { PageTransition } from "@/components/fade-in"
-import { Separator } from "@/components/ui/separator"
-import { Badge } from "@/components/ui/badge"
 import {
   Cpu,
   Sparkles,
@@ -82,65 +77,61 @@ const tools: AIItem[] = [
 
 function TerminalCard({
   item,
-  index,
 }: {
   item: AIItem
   index: number
 }) {
   const Icon = item.icon
   return (
-    <FadeIn key={item.title} delay={0.1 * (index + 1)} direction="up">
-      <div
-        className="group relative rounded-xl bg-card border border-border/50 p-6
-          transition-colors duration-300 transition-shadow duration-300
-          hover:border-primary/25 hover:shadow-md"
-      >
-        <div className="relative">
-          {/* Terminal-style header bar */}
-          <div className="flex items-center gap-2 mb-4 pb-3 border-b border-border/30">
-            <div className="flex gap-1.5">
-              <div className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
-              <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
-              <div className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
-            </div>
-            <span className="text-[10px] font-mono text-muted-foreground ml-2 tracking-wider uppercase">
-              {item.title.toLowerCase().replace(/\s+/g, "-")}
-            </span>
+    <div
+      className="group relative rounded-xl bg-card border border-border/50 p-6
+        transition-colors duration-300 transition-shadow duration-300
+        hover:border-primary/25 hover:shadow-md"
+    >
+      <div className="relative">
+        {/* Terminal-style header bar */}
+        <div className="flex items-center gap-2 mb-4 pb-3 border-b border-border/30">
+          <div className="flex gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
+            <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
+            <div className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
           </div>
+          <span className="text-[10px] font-mono text-muted-foreground ml-2 tracking-wider uppercase">
+            {item.title.toLowerCase().replace(/\s+/g, "-")}
+          </span>
+        </div>
 
-          {/* Icon + Title */}
-          <div className="flex items-center gap-3 mb-3">
-            <div
-              className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center
-                transition-colors duration-300 group-hover:bg-primary/15"
+        {/* Icon + Title */}
+        <div className="flex items-center gap-3 mb-3">
+          <div
+            className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center
+              transition-colors duration-300 group-hover:bg-primary/15"
+          >
+            <Icon className="w-5 h-5 text-primary" />
+          </div>
+          <h3 className="text-lg font-semibold text-foreground font-heading">
+            {item.title}
+          </h3>
+        </div>
+
+        {/* Description */}
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+          {item.description}
+        </p>
+
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2">
+          {item.tags.map((tag) => (
+            <span
+              key={tag}
+              className="inline-flex items-center rounded-full border border-transparent bg-secondary text-secondary-foreground text-xs font-mono px-2.5 py-0.5 font-semibold"
             >
-              <Icon className="w-5 h-5 text-primary" />
-            </div>
-            <h3 className="text-lg font-semibold text-foreground font-heading">
-              {item.title}
-            </h3>
-          </div>
-
-          {/* Description */}
-          <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-            {item.description}
-          </p>
-
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2">
-            {item.tags.map((tag) => (
-              <Badge
-                key={tag}
-                variant="secondary"
-                className="text-xs font-mono"
-              >
-                {tag}
-              </Badge>
-            ))}
-          </div>
+              {tag}
+            </span>
+          ))}
         </div>
       </div>
-    </FadeIn>
+    </div>
   )
 }
 
@@ -168,92 +159,82 @@ function SectionHeader({
 
 export default function AILabsPage() {
   return (
-    <PageTransition>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-        {/* Header */}
-        <div className="mb-16 text-center">
-          <FadeIn delay={0.1}>
-            <div className="inline-flex items-center gap-3 mb-4">
-              <Cpu className="w-8 h-8 text-primary" />
-              <h1 className="text-4xl sm:text-5xl font-bold tracking-tight font-heading heading-balanced">
-                AI Labs
-              </h1>
-            </div>
-            <Separator className="mx-auto my-6 w-24 bg-primary/50" />
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Explorando el ecosistema de inteligencia artificial aplicada al
-              desarrollo, la automatización y la productividad.
-            </p>
-          </FadeIn>
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      {/* Header */}
+      <div className="mb-16 text-center">
+        <div className="inline-flex items-center gap-3 mb-4">
+          <Cpu className="w-8 h-8 text-primary" />
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight font-heading heading-balanced">
+            AI Labs
+          </h1>
         </div>
+        <div className="h-px w-24 bg-primary/50 mx-auto my-6" />
+        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          Explorando el ecosistema de inteligencia artificial aplicada al
+          desarrollo, la automatización y la productividad.
+        </p>
+      </div>
 
-        {/* Terminal-style decorative separator */}
-        <div className="mb-16 flex justify-center">
-          <div className="font-mono text-xs text-muted-foreground/60 flex items-center gap-3">
-            <span className="text-primary/60">&gt;</span>
-            <span>ls -la ~/ai-labs/</span>
-            <span className="inline-block w-2 h-4 bg-primary/60 animate-pulse" />
-          </div>
-        </div>
-
-        {/* ─── Agentes Autónomos ─── */}
-        <section className="mb-16">
-          <FadeIn delay={0.2}>
-            <SectionHeader
-              icon={Bot}
-              title="Agentes Autónomos"
-              subtitle="IA con capacidad de razonamiento, tool-calling y ejecución autónoma de tareas complejas."
-            />
-          </FadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {agents.map((item, index) => (
-              <TerminalCard key={item.title} item={item} index={index} />
-            ))}
-          </div>
-        </section>
-
-        {/* ─── Automatización ─── */}
-        <section className="mb-16">
-          <FadeIn delay={0.3}>
-            <SectionHeader
-              icon={Workflow}
-              title="Automatización"
-              subtitle="Flujos de trabajo inteligentes y protocolos de integración para conectar sistemas."
-            />
-          </FadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {automations.map((item, index) => (
-              <TerminalCard key={item.title} item={item} index={index} />
-            ))}
-          </div>
-        </section>
-
-        {/* ─── Herramientas IA ─── */}
-        <section className="mb-16">
-          <FadeIn delay={0.4}>
-            <SectionHeader
-              icon={Wrench}
-              title="Herramientas IA"
-              subtitle="Editores, scripts y pipelines potenciados por inteligencia artificial."
-            />
-          </FadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {tools.map((item, index) => (
-              <TerminalCard key={item.title} item={item} index={index} />
-            ))}
-          </div>
-        </section>
-
-        {/* Bottom terminal-style decorative element */}
-        <div className="flex justify-center mt-16">
-          <div className="font-mono text-xs text-muted-foreground/50 flex items-center gap-3">
-            <span className="text-primary/40">&gt;</span>
-            <span>exit</span>
-            <span className="h-px w-12 bg-border/50" />
-            <span>0</span>
-          </div>
+      {/* Terminal-style decorative separator */}
+      <div className="mb-16 flex justify-center">
+        <div className="font-mono text-xs text-muted-foreground/60 flex items-center gap-3">
+          <span className="text-primary/60">&gt;</span>
+          <span>ls -la ~/ai-labs/</span>
+          <span className="inline-block w-2 h-4 bg-primary/60 animate-pulse" />
         </div>
       </div>
-    </PageTransition>
+
+      {/* ─── Agentes Autónomos ─── */}
+      <section className="mb-16">
+        <SectionHeader
+          icon={Bot}
+          title="Agentes Autónomos"
+          subtitle="IA con capacidad de razonamiento, tool-calling y ejecución autónoma de tareas complejas."
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {agents.map((item, index) => (
+            <TerminalCard key={item.title} item={item} index={index} />
+          ))}
+        </div>
+      </section>
+
+      {/* ─── Automatización ─── */}
+      <section className="mb-16">
+        <SectionHeader
+          icon={Workflow}
+          title="Automatización"
+          subtitle="Flujos de trabajo inteligentes y protocolos de integración para conectar sistemas."
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {automations.map((item, index) => (
+            <TerminalCard key={item.title} item={item} index={index} />
+          ))}
+        </div>
+      </section>
+
+      {/* ─── Herramientas IA ─── */}
+      <section className="mb-16">
+        <SectionHeader
+          icon={Wrench}
+          title="Herramientas IA"
+          subtitle="Editores, scripts y pipelines potenciados por inteligencia artificial."
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {tools.map((item, index) => (
+            <TerminalCard key={item.title} item={item} index={index} />
+          ))}
+        </div>
+      </section>
+
+      {/* Bottom terminal-style decorative element */}
+      <div className="flex justify-center mt-16">
+        <div className="font-mono text-xs text-muted-foreground/50 flex items-center gap-3">
+          <span className="text-primary/40">&gt;</span>
+          <span>exit</span>
+          <span className="h-px w-12 bg-border/50" />
+          <span>0</span>
+        </div>
+      </div>
+    </div>
   )
 }
