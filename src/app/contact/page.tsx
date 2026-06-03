@@ -117,15 +117,15 @@ export default function ContactPage() {
                         rel={link.external ? "noopener noreferrer" : undefined}
                         className={cn(
                           "flex items-center gap-4 p-4 rounded-lg border border-border/50",
-                          "bg-card",
-                          "transition-colors duration-300 transition-shadow duration-300",
+                          "bg-card min-w-0",
+                          "transition-shadow duration-300",
                           "hover:border-primary/30 hover:bg-primary/5",
                           "hover:shadow-sm",
                           "group block"
                         )}
                       >
                         <link.icon className="h-5 w-5 text-primary shrink-0 transition-transform duration-200 ease-[0.23,1,0.32,1]" />
-                        <span className="text-sm font-medium text-foreground/90 transition-colors duration-200 group-hover:text-primary truncate max-w-[200px] sm:max-w-none">
+                        <span className="text-sm font-medium text-foreground/90 transition-colors duration-200 group-hover:text-primary truncate min-w-0">
                           {link.label}
                         </span>
                       </Link>
