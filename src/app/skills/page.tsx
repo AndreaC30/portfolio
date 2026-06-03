@@ -3,8 +3,8 @@
 import { Monitor, Server, Activity, Cpu, Terminal, Sparkles } from "lucide-react"
 import { PageTransition } from "@/components/fade-in"
 import FadeIn from "@/components/fade-in"
+import { StaggerContainer, StaggerItem } from "@/components/stagger"
 import { Separator } from "@/components/ui/separator"
-import { Badge } from "@/components/ui/badge"
 import { skillCategories } from "@/lib/data"
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -25,7 +25,7 @@ export default function SkillsPage() {
           <FadeIn delay={0.1}>
             <div className="inline-flex items-center gap-3 mb-4">
               <Sparkles className="w-8 h-8 text-primary" />
-              <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
+              <h1 className="text-4xl sm:text-5xl font-bold tracking-tight heading-balanced">
                 Skills
               </h1>
             </div>
@@ -37,65 +37,53 @@ export default function SkillsPage() {
           </FadeIn>
         </div>
 
-        {/* Skill category cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillCategories.map((category, index) => {
-            const IconComponent = iconMap[category.icon] || Terminal
-            return (
-              <FadeIn key={category.name} delay={0.1 * (index + 1)} direction="up">
-                <div
-                  className="group relative rounded-xl bg-card ring-1 ring-foreground/10 p-6
-                    hover:ring-primary/20 transition-all duration-300
-                    hover:shadow-lg hover:shadow-primary/[0.05]
-                    hover:-translate-y-1"
-                >
-                  {/* Subtle gradient hover overlay */}
-                  <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-br from-primary/[0.05] via-transparent to-transparent" />
-
-                  {/* Gradient border accent on hover */}
-                  <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none
-                    bg-gradient-to-br from-primary/20 via-transparent to-accent/20"
-                    style={{
-                      mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                      maskComposite: "exclude",
-                      WebkitMaskComposite: "destination-out",
-                      padding: "1px",
-                    }}
-                  />
-
-                  <div className="relative">
-                    {/* Icon + Title */}
-                    <div className="flex items-center gap-3 mb-5">
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center
-                        group-hover:bg-primary/15 transition-colors duration-300">
-                        <IconComponent className="w-5 h-5 text-primary" />
-                      </div>
-                      <h3 className="text-lg font-semibold text-foreground">
-                        {category.name}
-                      </h3>
-                    </div>
-
-                    {/* Skill badges */}
-                    <div className="flex flex-wrap gap-2">
-                      {category.skills.map((skill) => (
+        {/* Skill category cards — staggered grid */}
+        <StaggerContainer staggerDelay={0.05}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {skillCategories.map((category) => {
+              const IconComponent = iconMap[category.icon] || Terminal
+              return (
+                <StaggerItem key={category.name}>
+                  <div
+                    className="group relative rounded-xl bg-card border border-border/50 p-6
+                      transition-colors duration-300 transition-shadow duration-300
+                      hover:border-primary/25 hover:shadow-md"
+                  >
+                    <div className="relative">
+                      {/* Icon + Title */}
+                      <div className="flex items-center gap-3 mb-5">
                         <div
-                          key={skill}
-                          className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium
-                            bg-secondary/60 text-secondary-foreground border border-border/50
-                            hover:scale-105 hover:border-primary/40 hover:bg-primary/10 hover:text-primary
-                            hover:shadow-[0_0_15px_rgba(59,130,246,0.1)]
-                            transition-all duration-200 cursor-default"
+                          className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center
+                            transition-colors duration-300 group-hover:bg-primary/15"
                         >
-                          {skill}
+                          <IconComponent className="w-5 h-5 text-primary" />
                         </div>
-                      ))}
+                        <h3 className="text-lg font-semibold text-foreground">
+                          {category.name}
+                        </h3>
+                      </div>
+
+                      {/* Skill badges */}
+                      <div className="flex flex-wrap gap-2">
+                        {category.skills.map((skill) => (
+                          <span
+                            key={skill}
+                            className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium
+                              bg-secondary/60 text-secondary-foreground border border-border/50
+                              transition-colors duration-200 cursor-default
+                              hover:border-primary/40 hover:bg-primary/10 hover:text-primary"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </FadeIn>
-            )
-          })}
-        </div>
+                </StaggerItem>
+              )
+            })}
+          </div>
+        </StaggerContainer>
 
         {/* Bottom decorative element */}
         <div className="flex justify-center mt-16">

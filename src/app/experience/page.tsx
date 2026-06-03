@@ -1,5 +1,6 @@
 "use client"
 
+import { motion } from "framer-motion"
 import { Calendar, CheckCircle2, Briefcase } from "lucide-react"
 import { PageTransition } from "@/components/fade-in"
 import FadeIn from "@/components/fade-in"
@@ -7,6 +8,43 @@ import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
 import { experience } from "@/lib/data"
 import { cn } from "@/lib/utils"
+
+const easeOut: [number, number, number, number] = [0.23, 1, 0.32, 1]
+
+function TimelineDot() {
+  return (
+    <div className="relative flex items-center justify-center">
+      {/* Subtle pulse ring */}
+      <motion.div
+        animate={{
+          scale: [1, 1.25, 1],
+          opacity: [0.3, 0.6, 0.3],
+        }}
+        transition={{
+          duration: 2.5,
+          repeat: Infinity,
+          ease: easeOut,
+        }}
+        className="absolute w-7 h-7 rounded-full bg-primary/15"
+      />
+      {/* Outer ring */}
+      <div className="relative w-5 h-5 rounded-full bg-background ring-2 ring-primary/50 flex items-center justify-center">
+        {/* Inner dot */}
+        <motion.div
+          animate={{
+            scale: [1, 1.3, 1],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: easeOut,
+          }}
+          className="w-2 h-2 rounded-full bg-primary"
+        />
+      </div>
+    </div>
+  )
+}
 
 export default function ExperiencePage() {
   return (
@@ -17,7 +55,7 @@ export default function ExperiencePage() {
           <FadeIn delay={0.1}>
             <div className="inline-flex items-center gap-3 mb-4">
               <Briefcase className="w-8 h-8 text-primary" />
-              <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
+              <h1 className="text-4xl sm:text-5xl font-bold tracking-tight heading-balanced">
                 Experiencia
               </h1>
             </div>
@@ -52,14 +90,13 @@ export default function ExperiencePage() {
                           : "md:col-start-1 md:col-end-2 md:text-right"
                       )}
                     >
-                      {/* Mobile: card first, then content */}
-                      {/* Desktop: content on correct side */}
+                      {/* Card */}
                       <div
                         className={cn(
                           "ml-12 md:ml-0 relative group",
-                          "p-6 rounded-xl bg-card ring-1 ring-foreground/10",
-                          "hover:ring-primary/30 transition-all duration-300",
-                          "hover:shadow-lg hover:shadow-primary/5"
+                          "p-6 rounded-xl bg-card border border-border/50",
+                          "transition-colors duration-300 transition-shadow duration-300",
+                          "hover:border-primary/30 hover:shadow-md"
                         )}
                       >
                         {/* Current badge */}
@@ -102,28 +139,17 @@ export default function ExperiencePage() {
                             </li>
                           ))}
                         </ul>
-
-                        {/* Subtle accent line on hover */}
-                        <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-br from-primary/[0.03] to-transparent" />
                       </div>
                     </div>
 
                     {/* Timeline node (center column) - only on md+ */}
                     <div className="hidden md:flex md:col-start-2 md:col-end-3 items-start justify-center pt-2">
-                      <div className="relative flex items-center justify-center">
-                        {/* Outer ring */}
-                        <div className="w-5 h-5 rounded-full bg-background ring-2 ring-primary/60 flex items-center justify-center shadow-[0_0_12px_rgba(59,130,246,0.2)]">
-                          {/* Inner dot */}
-                          <div className="w-2 h-2 rounded-full bg-primary" />
-                        </div>
-                      </div>
+                      <TimelineDot />
                     </div>
 
                     {/* Timeline node - mobile (positioned absolutely at left) */}
                     <div className="absolute left-0 top-2 md:hidden">
-                      <div className="w-5 h-5 rounded-full bg-background ring-2 ring-primary/60 flex items-center justify-center shadow-[0_0_12px_rgba(59,130,246,0.2)]">
-                        <div className="w-2 h-2 rounded-full bg-primary" />
-                      </div>
+                      <TimelineDot />
                     </div>
                   </div>
                 </FadeIn>
@@ -131,9 +157,20 @@ export default function ExperiencePage() {
             })}
           </div>
 
-          {/* Bottom glow on timeline endpoint */}
+          {/* Timeline endpoint */}
           <div className="flex justify-center mt-8">
-            <div className="w-3 h-3 rounded-full bg-primary/40 shadow-[0_0_20px_rgba(59,130,246,0.4)] animate-pulse" />
+            <motion.div
+              animate={{
+                scale: [1, 1.3, 1],
+                opacity: [0.3, 0.55, 0.3],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: easeOut,
+              }}
+              className="w-2.5 h-2.5 rounded-full bg-primary/35"
+            />
           </div>
         </div>
       </div>

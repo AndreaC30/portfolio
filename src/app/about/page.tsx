@@ -1,11 +1,13 @@
 "use client"
 
+import { motion } from "framer-motion"
 import { PageTransition } from "@/components/fade-in"
-import FadeIn from "@/components/fade-in"
+import FadeIn, { ScaleFadeIn } from "@/components/fade-in"
+import { StaggerContainer, StaggerItem } from "@/components/stagger"
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
 import { aboutText, skillCategories } from "@/lib/data"
-import { Monitor, Server, Cpu, Terminal, Sparkles, Code2 } from "lucide-react"
+import { Monitor, Server, Cpu, Terminal, Sparkles, Code2, Workflow, Video } from "lucide-react"
 
 const iconMap: Record<string, React.ReactNode> = {
   monitor: <Monitor className="w-5 h-5" />,
@@ -14,6 +16,8 @@ const iconMap: Record<string, React.ReactNode> = {
   cpu: <Cpu className="w-5 h-5" />,
   terminal: <Terminal className="w-5 h-5" />,
   sparkles: <Sparkles className="w-5 h-5" />,
+  workflow: <Workflow className="w-5 h-5" />,
+  video: <Video className="w-5 h-5" />,
 }
 
 export default function AboutPage() {
@@ -23,22 +27,24 @@ export default function AboutPage() {
     <PageTransition>
       <div className="max-w-4xl mx-auto px-6 py-16 sm:py-24">
         {/* Page header */}
-        <div className="mb-16 text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4 font-heading">
-            Sobre mí
-          </h1>
-          <Separator className="mx-auto w-20 bg-primary/40 h-0.5" />
-          <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
-            Full Stack Developer apasionada por la intersección entre el
-            desarrollo web y la industria
-          </p>
-        </div>
+        <FadeIn delay={0}>
+          <div className="mb-16 text-center">
+            <h1 className="text-4xl sm:text-5xl font-bold mb-4 font-heading heading-balanced">
+              Sobre mí
+            </h1>
+            <Separator className="mx-auto w-20 bg-primary/40 h-0.5" />
+            <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
+              Full Stack Developer apasionada por la intersección entre el
+              desarrollo web y la automatización inteligente
+            </p>
+          </div>
+        </FadeIn>
 
         {/* ─── Perfil profesional ─── */}
-        <FadeIn delay={0.1} direction="up">
-          <section className="mb-12 p-8 sm:p-10 rounded-2xl bg-card border border-border/50 gradient-border">
+        <ScaleFadeIn delay={0.1}>
+          <section className="mb-12 p-8 sm:p-10 rounded-xl bg-card border border-border/50 group">
             <div className="flex items-center gap-3 mb-6">
-              <div className="p-2 rounded-lg bg-primary/10 text-primary">
+              <div className="p-2 rounded-lg bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary/15">
                 <Code2 className="w-5 h-5" />
               </div>
               <h2 className="text-2xl font-semibold font-heading">
@@ -49,13 +55,13 @@ export default function AboutPage() {
               {paragraphs[0]}
             </p>
           </section>
-        </FadeIn>
+        </ScaleFadeIn>
 
         {/* ─── Enfoque técnico ─── */}
-        <FadeIn delay={0.2} direction="up">
-          <section className="mb-12 p-8 sm:p-10 rounded-2xl bg-card border border-border/50 gradient-border">
+        <ScaleFadeIn delay={0.2}>
+          <section className="mb-12 p-8 sm:p-10 rounded-xl bg-card border border-border/50 group">
             <div className="flex items-center gap-3 mb-6">
-              <div className="p-2 rounded-lg bg-primary/10 text-primary">
+              <div className="p-2 rounded-lg bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary/15">
                 <Terminal className="w-5 h-5" />
               </div>
               <h2 className="text-2xl font-semibold font-heading">
@@ -67,41 +73,42 @@ export default function AboutPage() {
               {paragraphs[2]}
             </p>
 
-            {/* Skill categories as cards */}
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {skillCategories.map((cat) => (
-                <div
-                  key={cat.name}
-                  className="p-4 rounded-xl bg-secondary/50 border border-border/30"
-                >
-                  <div className="flex items-center gap-2 mb-3 text-foreground font-medium">
-                    <span className="text-primary">
-                      {iconMap[cat.icon] || <Terminal className="w-4 h-4" />}
-                    </span>
-                    {cat.name}
-                  </div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {cat.skills.map((skill) => (
-                      <Badge
-                        key={skill}
-                        variant="outline"
-                        className="text-xs border-primary/10 bg-transparent"
-                      >
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
+            {/* Skill categories as cards — staggered */}
+            <StaggerContainer staggerDelay={0.05}>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {skillCategories.map((cat) => (
+                  <StaggerItem key={cat.name}>
+                    <div className="p-4 rounded-xl bg-secondary/50 border border-border/30 transition-colors duration-300 cursor-default hover:border-primary/20">
+                      <div className="flex items-center gap-2 mb-3 text-foreground font-medium">
+                        <span className="text-primary">
+                          {iconMap[cat.icon] || <Terminal className="w-4 h-4" />}
+                        </span>
+                        {cat.name}
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {cat.skills.map((skill) => (
+                          <Badge
+                            key={skill}
+                            variant="outline"
+                            className="text-xs border-primary/10 bg-transparent transition-colors duration-200 hover:bg-primary/5 hover:border-primary/30"
+                          >
+                            {skill}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  </StaggerItem>
+                ))}
+              </div>
+            </StaggerContainer>
           </section>
-        </FadeIn>
+        </ScaleFadeIn>
 
         {/* ─── Filosofía de trabajo ─── */}
-        <FadeIn delay={0.3} direction="up">
-          <section className="p-8 sm:p-10 rounded-2xl bg-card border border-border/50 gradient-border">
+        <ScaleFadeIn delay={0.3}>
+          <section className="p-8 sm:p-10 rounded-xl bg-card border border-border/50 group">
             <div className="flex items-center gap-3 mb-6">
-              <div className="p-2 rounded-lg bg-primary/10 text-primary">
+              <div className="p-2 rounded-lg bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary/15">
                 <Sparkles className="w-5 h-5" />
               </div>
               <h2 className="text-2xl font-semibold font-heading">
@@ -112,7 +119,7 @@ export default function AboutPage() {
               {paragraphs[1]}
             </p>
           </section>
-        </FadeIn>
+        </ScaleFadeIn>
       </div>
     </PageTransition>
   )

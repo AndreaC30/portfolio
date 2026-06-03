@@ -55,8 +55,8 @@
   --card-foreground: oklch(0.95 0.005 260);
   --popover: oklch(0.17 0.015 260);
   --popover-foreground: oklch(0.95 0.005 260);
-  --primary: oklch(0.62 0.18 250);
-  --primary-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.65 0.15 160);
+  --primary-foreground: oklch(0.12 0.02 260);
   --secondary: oklch(0.25 0.02 260);
   --secondary-foreground: oklch(0.85 0.01 260);
   --muted: oklch(0.22 0.015 260);
@@ -66,8 +66,8 @@
   --destructive: oklch(0.7 0.2 25);
   --border: oklch(0.3 0.02 260);
   --input: oklch(0.3 0.02 260);
-  --ring: oklch(0.62 0.18 250);
-  --chart-1: oklch(0.62 0.18 250);
+  --ring: oklch(0.65 0.15 160);
+  --chart-1: oklch(0.65 0.15 160);
   --chart-2: oklch(0.65 0.15 160);
   --chart-3: oklch(0.7 0.15 170);
   --chart-4: oklch(0.6 0.12 280);
@@ -90,8 +90,8 @@
   --card-foreground: oklch(0.95 0.005 260);
   --popover: oklch(0.17 0.015 260);
   --popover-foreground: oklch(0.95 0.005 260);
-  --primary: oklch(0.62 0.18 250);
-  --primary-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.65 0.15 160);
+  --primary-foreground: oklch(0.12 0.02 260);
   --secondary: oklch(0.25 0.02 260);
   --secondary-foreground: oklch(0.85 0.01 260);
   --muted: oklch(0.22 0.015 260);
@@ -101,8 +101,8 @@
   --destructive: oklch(0.7 0.2 25);
   --border: oklch(0.3 0.02 260);
   --input: oklch(0.3 0.02 260);
-  --ring: oklch(0.62 0.18 250);
-  --chart-1: oklch(0.62 0.18 250);
+  --ring: oklch(0.65 0.15 160);
+  --chart-1: oklch(0.65 0.15 160);
   --chart-2: oklch(0.65 0.15 160);
   --chart-3: oklch(0.7 0.15 170);
   --chart-4: oklch(0.6 0.12 280);
@@ -129,41 +129,136 @@
   }
 }
 
+/* ─── Impeccable Design System ─── */
+
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;
 }
 
-/* Glow effects for tech feel */
-.glow-blue {
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.15), 0 0 60px rgba(59, 130, 246, 0.05);
+/* Refined text rendering */
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.glow-green {
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.15), 0 0 60px rgba(16, 185, 129, 0.05);
+/* Typography scale — crisp, balanced */
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
 }
 
-/* Grid background for hero */
-.bg-grid {
-  background-image: linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
+p {
+  text-wrap: pretty;
 }
 
-/* Gradient border for cards */
-.gradient-border {
-  position: relative;
+/* Selection — subtle branded highlight */
+::selection {
+  background-color: oklch(0.65 0.15 160 / 0.25);
+  color: oklch(0.98 0 0);
 }
 
-.gradient-border::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(16, 185, 129, 0.3));
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  -webkit-mask-composite: destination-out;
-  pointer-events: none;
+/* Focus ring — clean, accessible */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Scrollbar — minimal, dark */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(0.3 0.02 260);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.4 0.02 260);
+}
+
+/* ─── Taste-skill Utility Classes ─── */
+
+/* Subtle dot-grid pattern (replaces bg-grid) */
+.bg-dot-grid {
+  background-image: radial-gradient(
+    circle,
+    oklch(0.65 0.15 160 / 0.08) 1px,
+    transparent 1px
+  );
+  background-size: 32px 32px;
+}
+@media (min-width: 768px) {
+  .bg-dot-grid {
+    background-size: 40px 40px;
+  }
+}
+
+/* Refined card elevation — no glow, just depth */
+.card-elevated {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 1px 3px oklch(0 0 0 / 0.12);
+}
+
+.card-elevated:hover {
+  box-shadow: 0 4px 16px oklch(0 0 0 / 0.18);
+  border-color: oklch(0.4 0.02 260);
+}
+
+/* Subtle gradient-border alternative — clean, understated */
+.border-accented {
+  border: 1px solid oklch(0.3 0.02 260);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.border-accented:hover {
+  border-color: oklch(0.65 0.15 160 / 0.35);
+  box-shadow: 0 2px 12px oklch(0 0 0 / 0.12);
+}
+
+/* Interactive element — gentle scale on hover */
+.interactive {
+  transition: transform 0.2s ease;
+}
+
+.interactive:hover {
+  transform: scale(1.02);
+}
+
+/* Subtle animated pulse for live indicators (not glow!) */
+@keyframes subtle-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.animate-subtle-pulse {
+  animation: subtle-pulse 2s ease-in-out infinite;
+}
+
+/* Divider line — gradient fade */
+.divider-fade {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    oklch(0.65 0.15 160 / 0.3),
+    transparent
+  );
+}
+
+/* Typography helper — balanced heading */
+.heading-balanced {
+  text-wrap: balance;
+  letter-spacing: -0.02em;
 }

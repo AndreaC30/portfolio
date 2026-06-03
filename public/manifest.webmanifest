@@ -1,0 +1,16 @@
+{
+  "name": "Andrea Cruz – Portfolio",
+  "short_name": "Andrea Cruz",
+  "description": "Full Stack Developer especializada en observabilidad industrial, automatización e IA.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png"
+    }
+  ]
+}
