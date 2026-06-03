@@ -230,7 +230,7 @@ export default function ContactPage() {
                             setFormState((s) => ({ ...s, name: e.target.value }))
                           }
                           required
-                          className="bg-background/50 border-border/50 transition-colors duration-200 focus:border-primary/50 focus:ring-primary/20"
+                          className="h-11 text-base bg-background/50 border-border/50 transition-colors duration-200 focus:border-primary/50 focus:ring-primary/20 rounded-lg"
                         />
                       </div>
                       <div className="space-y-2">
@@ -250,7 +250,7 @@ export default function ContactPage() {
                             setFormState((s) => ({ ...s, email: e.target.value }))
                           }
                           required
-                          className="bg-background/50 border-border/50 transition-colors duration-200 focus:border-primary/50 focus:ring-primary/20"
+                          className="h-11 text-base bg-background/50 border-border/50 transition-colors duration-200 focus:border-primary/50 focus:ring-primary/20 rounded-lg"
                         />
                       </div>
                     </div>
@@ -266,7 +266,7 @@ export default function ContactPage() {
                         id="message"
                         name="message"
                         placeholder="Cuéntame sobre tu proyecto..."
-                        rows={5}
+                        rows={6}
                         value={formState.message}
                         onChange={(e) =>
                           setFormState((s) => ({
@@ -275,15 +275,14 @@ export default function ContactPage() {
                           }))
                         }
                         required
-                        className="bg-background/50 border-border/50 transition-colors duration-200 focus:border-primary/50 focus:ring-primary/20 resize-none"
+                        className="min-h-[140px] text-base bg-background/50 border-border/50 transition-colors duration-200 focus:border-primary/50 focus:ring-primary/20 resize-none rounded-lg"
                       />
                     </div>
 
                     <Button
                       type="submit"
                       disabled={status === "sending"}
-                      className="w-full sm:w-auto gap-2 transition-colors duration-200 transition-transform duration-150 active:scale-[0.97] hover:shadow-md"
-                      size="lg"
+                      className="w-full sm:w-auto h-11 px-8 text-base font-semibold gap-2 transition-colors duration-200 transition-transform duration-150 active:scale-[0.97] hover:shadow-md rounded-lg"
                     >
                       {status === "sending" ? (
                         <>
