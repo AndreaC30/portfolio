@@ -24,19 +24,21 @@ export interface Project {
 
 export const personalInfo = {
   name: "Andrea Guadalupe Cruz Hernández",
-  title: "Full Stack Developer | AI Automation & AI Video Generation | n8n · Odoo 19 · Cursor",
-  subtitle: "React · FastAPI · n8n · Odoo 19 · Cursor · AI Video Generation",
+  title: "Full Stack Developer | Agentes IA · Automatización · Infraestructura Self-Hosted",
+  subtitle: "Python · React · FastAPI · n8n · Odoo 19 · Hermes Agent · Docker · Linux",
   email: "andreacruz_30@hotmail.com",
   github: "https://github.com/AndreaC30",
   linkedin: "https://www.linkedin.com/in/andreacruzhernandez/",
   location: "Spain",
 }
 
-export const aboutText = `Full Stack Developer con enfoque en automatización inteligente, generación de video con IA e integración de sistemas empresariales. Mi trabajo combina desarrollo web moderno con flujos de automatización avanzados usando n8n, personalización de ERP con Odoo 19, y creación de contenido multimedia automatizado mediante IA.
+export const aboutText = `Full Stack Developer especializada en automatización, agentes de IA y gestión de infraestructura self-hosted. Trabajo con Python y React para construir aplicaciones web completas, desde el backend con FastAPI hasta el frontend con Next.js y Tailwind.
 
-Mi filosofía: automatizar todo lo automatizable, integrar sistemas sin fricción, y aprovechar la IA generativa para crear contenido visual y video a escala.
+Gestiono mis propios servidores Linux (VPS): configuro Nginx como reverse proxy, administro dominios y subdominios, despliego con Docker Compose, y aseguro todo con SSL mediante Let's Encrypt. Cada proyecto que construyo pasa por un ciclo completo: desarrollo local, despliegue en producción y monitorización continua.
 
-Domino el stack React + Python (FastAPI/Django), plataformas de automatización como n8n, Odoo 19 y MCPs, y herramientas de generación de video con IA. Desarrollo asistido por IA con Cursor IDE para maximizar productividad y calidad de código.`
+Mi stack de agentes IA incluye Hermes Agent (Nous Research) con skills personalizadas, herramientas MCP, y modelos como DeepSeek V4 y OpenCode. Utilizo estos agentes para automatizar flujos de trabajo complejos, desde code review hasta despliegues y monitorización.
+
+Automatizo procesos empresariales con n8n (self-hosted), desarrollo módulos personalizados para Odoo 19, y acelero mi productividad con Cursor IDE.`
 
 export const experience: Experience[] = [
   {
@@ -44,15 +46,15 @@ export const experience: Experience[] = [
     role: "Full Stack Developer",
     period: "2024 - Actualidad",
     current: true,
-    description: "Desarrollo full stack con enfoque en automatización inteligente, generación de video con IA y gestión empresarial con Odoo 19.",
+    description: "Desarrollo full stack con enfoque en automatización con agentes IA, gestión de infraestructura y ERP con Odoo 19.",
     highlights: [
-      "Automatización de flujos de trabajo con n8n y MCPs para procesos empresariales",
-      "Generación de contenido de video mediante IA (Runway, HeyGen, Synthesia)",
-      "Personalización y desarrollo de módulos para Odoo 19",
+      "Automatización de procesos con n8n self-hosted, webhooks y APIs REST",
+      "Desarrollo y despliegue de aplicaciones web con Python (FastAPI) + React",
+      "Personalización de módulos para Odoo 19 e integración con sistemas externos",
+      "Gestión de infraestructura Linux: VPS, Nginx, Docker, SSL, dominios y subdominios",
+      "Orquestación de agentes IA con Hermes Agent, skills, MCPs y modelos OpenCode",
       "Desarrollo asistido por IA con Cursor IDE para acelerar entregas",
-      "React + Tailwind para dashboards y aplicaciones web interactivas",
-      "APIs con FastAPI y Django para integración de sistemas",
-      "Despliegue y orquestación de infraestructura con Docker",
+      "React + Tailwind + Next.js para dashboards y aplicaciones web modernas",
     ],
   },
   {
@@ -78,65 +80,68 @@ export const skillCategories: SkillCategory[] = [
   {
     name: "Backend",
     icon: "server",
-    skills: ["Python", "FastAPI", "Django"],
+    skills: ["Python", "FastAPI", "Django", "PostgreSQL"],
   },
   {
-    name: "Automation & Integration",
-    icon: "workflow",
-    skills: ["n8n", "Odoo 19", "Node-RED", "MCPs", "REST APIs"],
-  },
-  {
-    name: "AI & Video Generation",
-    icon: "video",
-    skills: ["Runway", "HeyGen", "Synthesia", "Hermes Agent", "Cursor"],
-  },
-  {
-    name: "DevOps & Infrastructure",
+    name: "Infra & DevOps",
     icon: "terminal",
-    skills: ["Docker", "Git", "GitHub", "VS Code", "Linux"],
+    skills: ["Docker", "Nginx", "Linux VPS", "SSL", "Dominios", "Git", "GitHub"],
+  },
+  {
+    name: "AI Agents & LLMs",
+    icon: "sparkles",
+    skills: ["Hermes Agent", "OpenCode", "DeepSeek V4", "MCPs", "Skills", "Cursor"],
+  },
+  {
+    name: "Automation & ERP",
+    icon: "workflow",
+    skills: ["n8n", "Odoo 19", "Node-RED", "REST APIs", "Webhooks"],
   },
 ]
 
 export const projects: Project[] = [
   {
-    title: "AI Video Generation Pipeline",
-    description: "Pipeline automatizado de generación de video con IA: desde guion hasta edición final con herramientas como Runway, HeyGen y Synthesia.",
-    stack: ["Runway", "HeyGen", "Python", "FastAPI", "React"],
-    problem: "Automatizar la producción de contenido de video empresarial reduciendo tiempo y costes de producción tradicional.",
+    title: "Hermes Agent — Automatización con IA",
+    description: "Configuración y uso de Hermes Agent (Nous Research) con skills personalizadas, herramientas MCP, cron jobs y despliegue de agentes autónomos para tareas de desarrollo, monitorización y automatización.",
+    stack: ["Hermes Agent", "Python", "MCPs", "Docker", "Linux"],
+    problem: "Automatizar flujos de trabajo complejos usando agentes IA con razonamiento, tool-calling y ejecución multi-step, reduciendo intervención manual en tareas repetitivas.",
+    github: "https://github.com/AndreaC30",
+  },
+  {
+    title: "Infraestructura Self-Hosted",
+    description: "Gestión completa de servidores Linux con Nginx como reverse proxy, múltiples dominios y subdominios, Docker Compose para despliegues, SSL con Let's Encrypt y monitorización de servicios.",
+    stack: ["Linux", "Nginx", "Docker", "SSL", "Systemd", "Python"],
+    problem: "Centralizar el despliegue de múltiples aplicaciones web en una sola VPS con aislamiento, seguridad y alta disponibilidad, sin depender de plataformas cloud gestionadas.",
     github: "https://github.com/AndreaC30",
   },
   {
     title: "n8n Automation Workflows",
-    description: "Flujos de automatización empresarial con n8n: integración de APIs, procesamiento de datos, notificaciones y agentes IA.",
-    stack: ["n8n", "Python", "FastAPI", "Docker", "MCPs"],
-    problem: "Automatizar procesos de negocio repetitivos y conectar sistemas dispares sin código complejo, usando n8n como orquestador central.",
+    description: "Flujos de automatización empresarial con n8n self-hosted: integración de APIs, procesamiento de datos, notificaciones por Telegram y agentes IA conectados mediante webhooks.",
+    stack: ["n8n", "Python", "FastAPI", "Docker", "Webhooks"],
+    problem: "Automatizar procesos de negocio repetitivos y conectar sistemas dispares sin código complejo, usando n8n como orquestador central con agentes IA integrados.",
     github: "https://github.com/AndreaC30",
   },
   {
     title: "Odoo 19 Custom Modules",
-    description: "Desarrollo de módulos personalizados para Odoo 19: automatización de procesos, dashboards e integración con sistemas externos vía API.",
+    description: "Desarrollo de módulos personalizados para Odoo 19: automatización de procesos, dashboards e integración con sistemas externos vía API REST.",
     stack: ["Python", "Odoo 19", "PostgreSQL", "Docker", "n8n"],
-    problem: "Extender Odoo 19 para cubrir flujos de trabajo específicos no disponibles en los módulos estándar, integrando todo con n8n para automatización end-to-end.",
-    github: "https://github.com/AndreaC30",
-  },
-  {
-    title: "FastAPI REST API",
-    description: "Backend moderno con FastAPI, autenticación JWT, documentación OpenAPI automática y testing completo. Desarrollado con Cursor IDE.",
-    stack: ["FastAPI", "Python", "PostgreSQL", "Docker", "Cursor"],
-    problem: "Crear una API REST rápida, documentada y testeable para servir datos a aplicaciones frontend y flujos de automatización.",
+    problem: "Extender Odoo 19 para cubrir flujos de trabajo específicos no disponibles en los módulos estándar, integrando con n8n para automatización end-to-end.",
     github: "https://github.com/AndreaC30",
   },
 ]
 
 export const keywords = [
   "Full Stack Developer",
+  "Python Developer",
   "React Developer",
   "FastAPI Developer",
-  "AI Automation Engineer",
-  "AI Video Generation",
+  "Next.js Developer",
+  "AI Agents Engineer",
+  "Hermes Agent",
+  "OpenCode",
   "n8n Automation",
   "Odoo 19 Developer",
-  "Cursor IDE",
-  "Python Developer",
-  "Next.js Developer",
+  "Docker",
+  "Linux Administrator",
+  "Self-Hosted Infrastructure",
 ]
