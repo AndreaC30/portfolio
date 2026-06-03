@@ -121,7 +121,7 @@ export default function ContactPage() {
                           "transition-shadow duration-300",
                           "hover:border-primary/30 hover:bg-primary/5",
                           "hover:shadow-sm",
-                          "group block"
+                          "group"
                         )}
                       >
                         <link.icon className="h-5 w-5 text-primary shrink-0 transition-transform duration-200 ease-[0.23,1,0.32,1]" />
