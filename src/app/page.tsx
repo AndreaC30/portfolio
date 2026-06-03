@@ -132,10 +132,13 @@ export default function Home() {
                   <ChevronRight className="w-4 h-4" />
                   Ver Proyectos
                 </Link>
-                <span className="inline-flex items-center gap-2 rounded-lg px-6 h-11 text-sm border border-primary/30 text-primary cursor-default transition-colors duration-200 hover:border-primary/50">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 rounded-lg px-6 h-11 text-sm border border-primary/30 text-primary transition-colors duration-200 hover:border-primary/50 active:scale-[0.97]"
+                >
                   <Download className="w-4 h-4" />
-                  Ver CV
-                </span>
+                  Solicitar CV
+                </Link>
                 <Link
                   href="/contact"
                   className="inline-flex items-center gap-2 rounded-lg px-6 h-11 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 active:scale-[0.97]"

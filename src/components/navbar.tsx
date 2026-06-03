@@ -93,23 +93,26 @@ export default function Navbar() {
       {/* Mobile nav overlay */}
       <AnimatePresence>
         {open && (
-          <>
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 md:hidden"
+          >
             {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-40 bg-black/40 md:hidden"
+            <div
+              className="absolute inset-0 bg-black/40"
               onClick={() => setOpen(false)}
             />
             {/* Menu panel */}
             <motion.div
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
+              initial={{ y: -8, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -8, opacity: 0 }}
               transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-              className="fixed top-14 left-0 right-0 bottom-0 z-40 bg-background border-t border-border/50 md:hidden overflow-y-auto"
+              className="absolute top-14 left-0 right-0 bottom-0 bg-background border-t border-border/50 overflow-y-auto"
             >
               <nav className="flex flex-col gap-1 p-4 pt-6 pb-20">
                 {navItems.map((item, i) => {
@@ -138,7 +141,7 @@ export default function Navbar() {
                 })}
               </nav>
             </motion.div>
-          </>
+          </motion.div>
         )}
       </AnimatePresence>
     </header>
