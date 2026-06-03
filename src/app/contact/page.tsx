@@ -125,7 +125,7 @@ export default function ContactPage() {
                         )}
                       >
                         <link.icon className="h-5 w-5 text-primary shrink-0 transition-transform duration-200 ease-[0.23,1,0.32,1]" />
-                        <span className="text-sm font-medium text-foreground/90 transition-colors duration-200 group-hover:text-primary">
+                        <span className="text-sm font-medium text-foreground/90 transition-colors duration-200 group-hover:text-primary truncate max-w-[200px] sm:max-w-none">
                           {link.label}
                         </span>
                       </Link>
@@ -135,22 +135,14 @@ export default function ContactPage() {
               </StaggerContainer>
 
               {/* Location */}
-              <div className="flex items-center gap-3 px-4 py-3 rounded-lg border border-border/30 bg-muted/30 transition-colors duration-300 hover:border-primary/20">
-                <MapPin className="h-4 w-4 text-chart-2" />
-                <span className="text-sm text-muted-foreground">
-                  {personalInfo.location}
-                </span>
-              </div>
-
-              {/* Decorative terminal-style hint */}
-              <div className="hidden md:block p-5 rounded-lg border border-border/40 bg-muted/20 font-mono text-xs text-muted-foreground space-y-1 transition-colors duration-300 hover:border-primary/20">
-                <p>
-                  <span className="text-chart-2">$</span> ssh contact@andreacruz.es
-                </p>
-                <p className="text-primary/60">
-                  Conexion establecida...
-                </p>
-              </div>
+              <FadeIn delay={0.35} direction="left">
+                <div className="flex items-center gap-3 px-4 py-3 rounded-lg border border-border/30 bg-muted/30 transition-colors duration-300 hover:border-primary/20">
+                  <MapPin className="h-4 w-4 text-chart-2" />
+                  <span className="text-sm text-muted-foreground">
+                    {personalInfo.location}
+                  </span>
+                </div>
+              </FadeIn>
             </div>
           </FadeIn>
 
