@@ -95,14 +95,14 @@ export default function Home() {
   return (
     <PageTransition>
       {/* Hero — asymmetric, left-aligned (DESIGN_VARIANCE=7) */}
-      <section className="relative min-h-[100dvh] flex items-center overflow-hidden bg-dot-grid">
+      <section className="relative min-h-[100dvh] md:min-h-[100dvh] flex items-center overflow-hidden bg-dot-grid">
         <HeroParallaxBlobs />
 
-        <div className="relative z-10 w-full max-w-5xl mx-auto px-6 sm:px-8 py-20 md:py-0">
+        <div className="relative z-10 w-full max-w-5xl mx-auto px-6 sm:px-8 py-16 md:py-0">
           <div className="md:max-w-[65%]">
             {/* Availability badge */}
             <FadeIn delay={0.1} direction="up">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border text-muted-foreground text-sm mb-8">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border text-muted-foreground text-xs sm:text-sm mb-6 md:mb-8">
                 <Terminal className="w-3.5 h-3.5 text-primary" />
                 <span>disponible para proyectos</span>
               </div>
@@ -110,14 +110,14 @@ export default function Home() {
 
             {/* Typing title */}
             <FadeIn delay={0.3} direction="up">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-5 font-heading heading-balanced">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-4 md:mb-5 font-heading heading-balanced">
                 <TypingTitle text={personalInfo.title} />
               </h1>
             </FadeIn>
 
             {/* Subtitle */}
             <FadeIn delay={0.6} direction="up">
-              <p className="text-base sm:text-lg text-muted-foreground max-w-xl mb-10">
+              <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-xl mb-8 md:mb-10">
                 {personalInfo.subtitle}
               </p>
             </FadeIn>
@@ -155,7 +155,7 @@ export default function Home() {
       </section>
 
       {/* About Preview — clean, no eye-brow overuse */}
-      <section className="py-24 px-6">
+      <section className="py-16 md:py-24 px-6">
         <div className="max-w-4xl mx-auto">
           <FadeIn delay={0.1} direction="up">
             <div className="flex items-center gap-3 mb-8">
@@ -166,7 +166,7 @@ export default function Home() {
               <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
             </div>
 
-            <p className="text-lg leading-relaxed text-muted-foreground max-w-3xl mx-auto text-center mb-8">
+            <p className="text-base md:text-lg leading-relaxed text-muted-foreground max-w-3xl mx-auto text-center mb-6">
               {aboutPreview}
             </p>
 
@@ -184,7 +184,7 @@ export default function Home() {
       </section>
 
       {/* Tech Stack — staggered pill badges */}
-      <section className="py-24 px-6 border-t border-border/50">
+      <section className="py-16 md:py-24 px-6 border-t border-border/50">
         <div className="max-w-4xl mx-auto">
           <FadeIn delay={0.1} direction="up">
             <div className="text-center mb-10">
