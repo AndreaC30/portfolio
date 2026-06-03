@@ -262,3 +262,85 @@ p {
   text-wrap: balance;
   letter-spacing: -0.02em;
 }
+
+/* ─── tasteskill.dev Signature Effects ─── */
+
+/* Sheen/shimmer sweep — the signature taste effect */
+.sheen {
+  position: relative;
+  overflow: hidden;
+}
+.sheen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.08) 45%,
+    rgba(255, 255, 255, 0.16) 50%,
+    rgba(255, 255, 255, 0.08) 55%,
+    transparent 60%
+  );
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+.sheen:hover::after {
+  transform: translateX(100%);
+}
+
+/* Card lift — the taste hover with long easing */
+.card-lift {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.card-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px -18px oklch(0 0 0 / 0.35),
+              0 2px 6px -2px oklch(0 0 0 / 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-lift {
+    transition: none;
+    will-change: auto;
+  }
+  .card-lift:hover {
+    transform: none;
+  }
+  .sheen::after {
+    display: none;
+  }
+}
+
+/* Nav underline — scale from left (taste style) */
+.nav-underline {
+  position: relative;
+}
+.nav-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  border-radius: 9999px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-underline:hover::after,
+.nav-underline.active::after {
+  transform: scaleX(1);
+}
+
+/* Ambient orb — large blurred blob for atmosphere */
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+}

@@ -71,16 +71,17 @@ function HeroParallaxBlobs() {
 
   return (
     <div ref={containerRef} className="absolute inset-0 pointer-events-none overflow-hidden">
+      {/* Taste-style ambient orbs — larger, more visible */}
       <motion.div
-        className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-primary/8 blur-[120px]"
+        className="orb top-[-20%] -left-40 w-[40rem] h-[40rem] bg-primary/[0.04] blur-[140px]"
         style={{ y: blob1Y, x: blob1X, scale: blob1Scale, opacity: blob1Opacity }}
       />
       <motion.div
-        className="absolute top-1/3 right-0 w-[500px] h-[400px] rounded-full bg-primary/5 blur-[130px]"
+        className="orb top-[30%] -right-40 w-[35rem] h-[35rem] bg-primary/[0.03] blur-[130px]"
         style={{ y: blob2Y, x: blob2X, scale: blob2Scale, opacity: blob2Opacity }}
       />
       <motion.div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] rounded-full bg-primary/3 blur-[100px]"
+        className="orb -bottom-20 left-1/2 -translate-x-1/2 w-[50rem] h-[20rem] bg-primary/[0.02] blur-[120px]"
         style={{ y: blob3Y }}
       />
     </div>
@@ -121,12 +122,12 @@ export default function Home() {
               </p>
             </FadeIn>
 
-            {/* CTA Buttons — emil-design-eng: active scale, no transition-all */}
+            {/* CTA Buttons — emil-design-eng: active scale, taste sheen on primary */}
             <FadeIn delay={0.8} direction="up">
               <div className="flex flex-wrap items-center gap-3">
                 <Link
                   href="/projects"
-                  className="inline-flex items-center gap-2 rounded-lg px-6 h-11 text-sm font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200 ease-out active:scale-[0.97]"
+                  className="sheen inline-flex items-center gap-2 rounded-xl px-7 h-12 text-sm font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200 ease-out active:scale-[0.97] shadow-[0_8px_24px_-12px_rgba(0,0,0,0.4)] hover:shadow-[0_14px_32px_-12px_rgba(0,0,0,0.55)]"
                 >
                   <ChevronRight className="w-4 h-4" />
                   Ver Proyectos

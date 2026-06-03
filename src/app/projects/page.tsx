@@ -53,9 +53,8 @@ export default function ProjectsPage() {
                 <div className="h-full">
                   <Card
                     className={cn(
-                      "group h-full flex flex-col border-border/50 bg-card",
-                      "transition-colors duration-300 transition-shadow duration-300",
-                      "hover:border-primary/25 hover:shadow-md"
+                      "group h-full flex flex-col border-border/50 bg-card card-lift",
+                      "hover:border-primary/25"
                     )}
                   >
                     <CardHeader className="relative z-10">

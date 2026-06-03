@@ -32,7 +32,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop nav */}
+        {/* Desktop nav — taste nav-underline effect */}
         <nav className="hidden md:flex items-center gap-1">
           {navItems.map((item) => {
             const isActive = pathname === item.href
@@ -41,20 +41,13 @@ export default function Navbar() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "relative px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-md active:scale-[0.97]",
+                  "relative px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-md active:scale-[0.97] nav-underline",
                   isActive
-                    ? "text-primary"
+                    ? "text-primary active"
                     : "text-muted-foreground hover:text-foreground"
                 )}
               >
                 {item.label}
-                {isActive && (
-                  <motion.span
-                    layoutId="navbar-active"
-                    className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-6 bg-primary rounded-full"
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  />
-                )}
               </Link>
             )
           })}
