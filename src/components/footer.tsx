@@ -10,7 +10,7 @@ export default function Footer() {
     <footer className="border-t border-border/50 bg-background">
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2 py-1">
             <Terminal className="h-4 w-4 text-primary" />
             <span className="font-mono text-xs text-muted-foreground">
               andrea<span className="text-primary">.dev</span>

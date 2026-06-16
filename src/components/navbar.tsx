@@ -55,7 +55,7 @@ export default function Navbar() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "relative px-2.5 py-2 text-sm font-medium transition-colors duration-200 rounded-md active:scale-[0.97] nav-underline",
+                    "relative px-2.5 py-2.5 text-sm font-medium transition-colors duration-200 rounded-md active:scale-[0.97] nav-underline",
                     isActive
                       ? "text-primary active"
                       : "text-muted-foreground hover:text-foreground"
@@ -106,7 +106,7 @@ export default function Navbar() {
                   href={item.href}
                   onClick={() => setOpen(false)}
                   className={cn(
-                    "block px-4 py-3.5 text-base font-medium transition-colors duration-200 rounded-lg active:scale-[0.98]",
+                    "block px-4 py-4 text-base font-medium transition-colors duration-200 rounded-lg active:scale-[0.98]",
                     isActive
                       ? "text-primary bg-primary/10"
                       : "text-foreground/80 hover:text-foreground hover:bg-white/5"

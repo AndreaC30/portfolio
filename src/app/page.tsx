@@ -77,7 +77,7 @@ export default function Home() {
           <div className="text-center">
             <Link
               href="/about"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group py-2"
             >
               Leer más sobre mí
               <ChevronRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />

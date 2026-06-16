@@ -100,6 +100,7 @@ export const projects: Project[] = [
     solution: "Configuré agentes de IA autónomos con Hermes Agent que ejecutan tareas multi-paso usando skills personalizadas y herramientas MCP.",
     implementation: "Hermes Agent con skills y MCPs personalizados, Python, Docker para despliegue aislado.",
     result: "Reducción del tiempo dedicado a tareas repetitivas y despliegues más rápidos con menos intervención manual.",
+    image: "/projects/hermes-panel.png",
     github: "https://github.com/AndreaC30",
   },
   {
@@ -110,6 +111,7 @@ export const projects: Project[] = [
     solution: "Configuré un servidor Linux completo con Nginx como reverse proxy, Docker Compose para aislamiento y SSL automático con Let's Encrypt.",
     implementation: "Linux VPS, Nginx reverse proxy, Docker Compose, Let's Encrypt, systemd para servicios.",
     result: "Múltiples aplicaciones corriendo en un solo servidor, aisladas, con HTTPS y monitorización continua.",
+    image: "/projects/infrastructure.png",
     github: "https://github.com/AndreaC30",
   },
   {
@@ -120,6 +122,7 @@ export const projects: Project[] = [
     solution: "Creé flujos de automatización con n8n self-hosted que conectan APIs, procesan datos y notifican por Telegram automáticamente.",
     implementation: "n8n self-hosted en Docker, Python y FastAPI para webhooks personalizados.",
     result: "Procesos que antes tomaban horas ahora se ejecutan automáticamente, con notificaciones en tiempo real.",
+    image: "/projects/n8n-workflow.png",
     github: "https://github.com/AndreaC30",
   },
   {
@@ -130,6 +133,7 @@ export const projects: Project[] = [
     solution: "Desarrollé módulos personalizados que extienden Odoo 19 con funcionalidades a medida e integración vía API REST.",
     implementation: "Python, framework de Odoo 19, PostgreSQL, integración con n8n para automatización end-to-end.",
     result: "Flujos de trabajo completos automatizados dentro de Odoo, conectados con sistemas externos sin intervención manual.",
+    image: "/projects/odoo-code.png",
     github: "https://github.com/AndreaC30",
   },
 ]

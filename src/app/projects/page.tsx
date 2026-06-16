@@ -1,3 +1,4 @@
+import Image from "next/image"
 import {
   Card,
   CardContent,
@@ -58,6 +59,21 @@ export default function ProjectsPage() {
                   {project.title}
                 </CardTitle>
               </CardHeader>
+
+              {/* Project Image */}
+              {project.image && (
+                <div className="relative z-10 px-6 pb-4">
+                  <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-border/30 bg-muted/30">
+                    <Image
+                      src={project.image}
+                      alt={`Captura de ${project.title}`}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                </div>
+              )}
 
               <CardContent className="flex-1 space-y-4 relative z-10">
                 {/* Problem → Solution → Implementation → Result */}
