@@ -1,8 +1,23 @@
 import Link from "next/link"
 import { personalInfo, skillCategories, aboutText } from "@/lib/data"
-import { CaretRight, DownloadSimple, Monitor, HardDrives, Terminal, Gear } from "@phosphor-icons/react/dist/ssr"
+import {
+  CaretRight,
+  DownloadSimple,
+  Monitor,
+  HardDrives,
+  Terminal,
+  Gear,
+  FileTs,
+  Code,
+  Database,
+  Cloud,
+  GitBranch,
+} from "@phosphor-icons/react/dist/ssr"
 import { AuroraText } from "@/components/effects/AuroraText"
 import { Marquee } from "@/components/effects/Marquee"
+import { Particles } from "@/components/effects/Particles"
+import { OrbitingCircles } from "@/components/effects/OrbitingCircles"
+import { SparklesText } from "@/components/effects/SparklesText"
 
 const categoryIcons: Record<string, React.ReactNode> = {
   monitor: <Monitor className="w-5 h-5" />,
@@ -11,28 +26,74 @@ const categoryIcons: Record<string, React.ReactNode> = {
   workflow: <Gear className="w-5 h-5" />,
 }
 
+// Tech icons for the orbiting circles
+const orbitIcons = [
+  { icon: <FileTs className="w-5 h-5" />, color: "text-[#3178C6]" },
+  { icon: <Code className="w-5 h-5" />, color: "text-[#61DAFB]" },
+  { icon: <Database className="w-5 h-5" />, color: "text-[#336791]" },
+  { icon: <Cloud className="w-5 h-5" />, color: "text-[#FF9900]" },
+  { icon: <GitBranch className="w-5 h-5" />, color: "text-[#F05032]" },
+  { icon: <Terminal className="w-5 h-5" />, color: "text-[#4AF626]" },
+]
+
 export default function Home() {
   const aboutPreview = aboutText.split("\n\n")[0]
-  const allSkills = skillCategories.flatMap(cat => cat.skills)
+  const allSkills = skillCategories.flatMap((cat) => cat.skills)
 
   return (
     <>
-      {/* Hero — with AuroraText name */}
+      {/* Hero — with Particles background, OrbitingCircles, SparklesText */}
       <section className="relative min-h-[100dvh] flex items-center overflow-hidden bg-dot-grid">
+        {/* Ambient orbs */}
         <div className="absolute top-[-10%] -right-40 w-[40rem] h-[40rem] rounded-full bg-[#2563EB]/[0.04] blur-[140px] pointer-events-none" />
         <div className="absolute bottom-[-20%] -left-40 w-[35rem] h-[35rem] rounded-full bg-[#7C3AED]/[0.03] blur-[130px] pointer-events-none" />
 
+        {/* Particles canvas — behind everything */}
+        <Particles
+          className="absolute inset-0 z-0"
+          quantity={80}
+          staticity={30}
+          ease={40}
+          color="#2563EB"
+        />
+
         <div className="relative z-10 w-full max-w-5xl mx-auto px-6 sm:px-8 py-16 md:py-0">
           <div className="md:max-w-[65%]">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border text-muted-foreground text-xs sm:text-sm mb-6 md:mb-8">
-              <span className="w-2 h-2 rounded-full bg-primary animate-subtle-pulse" />
-              <span>disponible para proyectos</span>
+            {/* Badge with orbiting circles */}
+            <div className="relative inline-flex mb-6 md:mb-8">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border text-muted-foreground text-xs sm:text-sm bg-background/60 backdrop-blur-sm">
+                <span className="w-2 h-2 rounded-full bg-primary animate-subtle-pulse" />
+                <span>disponible para proyectos</span>
+              </div>
+              {/* Orbiting tech icons around the badge */}
+              <OrbitingCircles
+                radius={100}
+                duration={25}
+                iconSize={36}
+                speed={0.8}
+                path={false}
+              >
+                {orbitIcons.map((item, i) => (
+                  <div
+                    key={i}
+                    className={`flex items-center justify-center w-9 h-9 rounded-full bg-card border border-border/50 ${item.color}`}
+                  >
+                    {item.icon}
+                  </div>
+                ))}
+              </OrbitingCircles>
             </div>
 
             <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-4 md:mb-5 heading-balanced">
               <AuroraText speed="slow">Andrea Cruz</AuroraText>
               <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal text-foreground mt-2">
-                {personalInfo.title}
+                <SparklesText
+                  className="text-inherit"
+                  sparklesCount={12}
+                  colors={{ first: "#2563EB", second: "#00E5FF" }}
+                >
+                  {personalInfo.title}
+                </SparklesText>
               </span>
             </h1>
 
@@ -91,7 +152,9 @@ export default function Home() {
       <section className="py-16 md:py-24 px-6 border-t border-border/50">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-3">Con que trabajo</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-3">
+              Con que trabajo
+            </h2>
             <p className="text-sm text-muted-foreground">
               Tecnologias que uso en mi dia a dia
             </p>
