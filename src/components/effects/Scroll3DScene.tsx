@@ -2,133 +2,133 @@
 
 import { useEffect, useRef, useState, useMemo } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Float, Line } from "@react-three/drei";
+import { Float, Line, Html } from "@react-three/drei";
 import * as THREE from "three";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import {
-  personalInfo,
-  aboutText,
-  skillCategories,
-  projects,
-} from "@/lib/data";
+import { personalInfo, aboutText, skillCategories, projects } from "@/lib/data";
 import { AuroraText } from "@/components/effects/AuroraText";
 import { SparklesText } from "@/components/effects/SparklesText";
 import { CaretRight } from "@phosphor-icons/react/dist/ssr";
 
-/* ───────────────────────────────────────────
-   Data: 8 stations for the full journey
-   ─────────────────────────────────────────── */
+/* ═══════════════════════════════════════════
+   TECH CONSTELLATION — Data
+   ═══════════════════════════════════════════ */
 
-interface Station {
-  id: string;
-  type: "hero" | "about" | "skills" | "project" | "contact";
-  title?: string;
-  subtitle?: string;
-  description?: string;
-  tags?: string[];
-  projectIndex?: number; // index into projects array
-  progressRange: [number, number];
+interface TechDef {
+  name: string;
+  color: string;
+  shape: "sphere" | "cube" | "octahedron" | "torus" | "cone" | "icosahedron";
+  orbitColor: string;
 }
 
-const aboutPreview = aboutText.split("\n\n")[0];
-const allSkills = skillCategories.flatMap((cat) => cat.skills);
+interface TechClusterDef {
+  id: string;
+  label: string;
+  type: "hero" | "about" | "skills" | "project" | "contact";
+  center: THREE.Vector3;
+  techs: TechDef[];
+  subtitle?: string;
+  projectIndex?: number;
+}
 
-const stations: Station[] = [
+const clusters: TechClusterDef[] = [
   {
     id: "hero",
+    label: "Andrea Cruz",
     type: "hero",
-    progressRange: [0, 0.12],
+    center: new THREE.Vector3(0, 6, 16),
+    techs: [],
   },
   {
-    id: "about",
-    type: "about",
-    title: "Sobre mí",
-    description: aboutPreview,
-    progressRange: [0.14, 0.26],
-  },
-  {
-    id: "skills",
+    id: "frontend",
+    label: "Frontend",
     type: "skills",
-    title: "Con qué trabajo",
-    tags: allSkills,
-    progressRange: [0.28, 0.42],
+    center: new THREE.Vector3(-5, 2, 8),
+    techs: [
+      { name: "React", color: "#61DAFB", shape: "sphere", orbitColor: "#61DAFB" },
+      { name: "Next.js", color: "#E0E0E0", shape: "icosahedron", orbitColor: "#E0E0E0" },
+      { name: "TypeScript", color: "#3178C6", shape: "octahedron", orbitColor: "#3178C6" },
+      { name: "Tailwind", color: "#06B6D4", shape: "cone", orbitColor: "#06B6D4" },
+    ],
   },
   {
-    id: "workshift",
-    type: "project",
-    projectIndex: 0,
-    title: "WorkShift",
-    subtitle: "App de fichaje laboral",
-    description:
-      "FastAPI + React + PostgreSQL + Docker. Registro de jornadas, cálculo automático de salario, gestión de clientes y conducción.",
-    tags: ["FastAPI", "React", "PostgreSQL", "Docker"],
-    progressRange: [0.44, 0.55],
-  },
-  {
-    id: "gastodehoy",
-    type: "project",
-    projectIndex: 1,
-    title: "GastoDeHoy",
-    subtitle: "Presupuesto personal inteligente",
-    description:
-      "FastAPI + React + n8n. Control de gastos con analytics semanal automatizado y notificaciones por email.",
-    tags: ["FastAPI", "React", "n8n", "PostgreSQL"],
-    progressRange: [0.57, 0.68],
-  },
-  {
-    id: "hermes",
-    type: "project",
-    projectIndex: 2,
-    title: "Hermes Agent",
-    subtitle: "Asistente IA autónomo",
-    description:
-      "Agentes de IA que ejecutan tareas multi-paso. Integración con Discord, Telegram, n8n, GitHub y más.",
-    tags: ["Python", "Docker", "n8n", "MCP"],
-    progressRange: [0.7, 0.81],
+    id: "backend",
+    label: "Backend",
+    type: "skills",
+    center: new THREE.Vector3(5, 2, 8),
+    techs: [
+      { name: "Python", color: "#FFD43B", shape: "sphere", orbitColor: "#FFD43B" },
+      { name: "FastAPI", color: "#009688", shape: "octahedron", orbitColor: "#009688" },
+      { name: "PostgreSQL", color: "#336791", shape: "cube", orbitColor: "#336791" },
+      { name: "PHP", color: "#777BB4", shape: "icosahedron", orbitColor: "#777BB4" },
+    ],
   },
   {
     id: "infra",
+    label: "Infraestructura",
+    type: "skills",
+    center: new THREE.Vector3(-5, -2.5, 8),
+    techs: [
+      { name: "Docker", color: "#2496ED", shape: "cube", orbitColor: "#2496ED" },
+      { name: "Nginx", color: "#009639", shape: "cube", orbitColor: "#009639" },
+      { name: "Linux", color: "#FCC624", shape: "sphere", orbitColor: "#FCC624" },
+      { name: "SSL", color: "#F59E0B", shape: "icosahedron", orbitColor: "#F59E0B" },
+      { name: "Git", color: "#F05032", shape: "cone", orbitColor: "#F05032" },
+    ],
+  },
+  {
+    id: "automation",
+    label: "Automatizacion",
+    type: "skills",
+    center: new THREE.Vector3(5, -2.5, 8),
+    techs: [
+      { name: "n8n", color: "#EA4B71", shape: "torus", orbitColor: "#EA4B71" },
+      { name: "Odoo", color: "#714B67", shape: "icosahedron", orbitColor: "#714B67" },
+      { name: "APIs", color: "#8B5CF6", shape: "torus", orbitColor: "#8B5CF6" },
+      { name: "Webhooks", color: "#EC4899", shape: "cone", orbitColor: "#EC4899" },
+    ],
+  },
+  {
+    id: "workshift",
+    label: "WorkShift",
     type: "project",
-    projectIndex: 3,
-    title: "Infraestructura Self-Hosted",
-    subtitle: "VPS, Nginx, Docker, SSL",
-    description:
-      "Múltiples aplicaciones en una sola VPS. Reverse proxy, SSL automático, monitorización y CI/CD.",
-    tags: ["Linux", "Nginx", "Docker", "SSL"],
-    progressRange: [0.83, 0.94],
+    center: new THREE.Vector3(-6, -6, 8),
+    subtitle: "App de fichaje laboral",
+    projectIndex: 0,
+    techs: [],
+  },
+  {
+    id: "gastodehoy",
+    label: "GastoDeHoy",
+    type: "project",
+    center: new THREE.Vector3(0, -6.5, 10),
+    subtitle: "Presupuesto personal",
+    projectIndex: 1,
+    techs: [],
+  },
+  {
+    id: "hermes",
+    label: "Hermes Agent",
+    type: "project",
+    center: new THREE.Vector3(6, -6, 8),
+    subtitle: "Asistente IA autonomo",
+    projectIndex: 2,
+    techs: [],
   },
   {
     id: "contact",
+    label: "Hablemos",
     type: "contact",
-    title: "¿Hablamos?",
-    subtitle: "Disponible para proyectos y colaboraciones",
-    progressRange: [0.96, 1.0],
+    center: new THREE.Vector3(0, -10, 10),
+    subtitle: "Disponible para proyectos",
+    techs: [],
   },
 ];
 
-/* ───────────────────────────────────────────
-   3D Path: 8 points for 8 stations
-   ─────────────────────────────────────────── */
-
-const rawPathPoints = [
-  new THREE.Vector3(0, 7, 20),
-  new THREE.Vector3(0.5, 5, 14),
-  new THREE.Vector3(1, 2.5, 9),
-  new THREE.Vector3(-2, 0.5, 6),
-  new THREE.Vector3(-3.5, -1.5, 5),
-  new THREE.Vector3(3, -3, 4.5),
-  new THREE.Vector3(5, -5, 4),
-  new THREE.Vector3(0, -7, 3.5),
-];
-
-const stationPositions = rawPathPoints.map((p) =>
-  new THREE.Vector3(p.x, p.y + 1, p.z)
-);
-
-/* ───────────────────────────────────────────
+/* ═══════════════════════════════════════════
    Helpers
-   ─────────────────────────────────────────── */
+   ═══════════════════════════════════════════ */
 
 function lerp(a: number, b: number, t: number) {
   return a + (b - a) * t;
@@ -138,12 +138,150 @@ function lerpV3(a: THREE.Vector3, b: THREE.Vector3, t: number) {
   return new THREE.Vector3(lerp(a.x, b.x, t), lerp(a.y, b.y, t), lerp(a.z, b.z, t));
 }
 
-/* ───────────────────────────────────────────
-   ParticlesField
-   ─────────────────────────────────────────── */
+function orbitPosition(center: THREE.Vector3, index: number, total: number, radius: number, time: number) {
+  const angle = (index / total) * Math.PI * 2 + time * 0.15;
+  return new THREE.Vector3(
+    center.x + Math.cos(angle) * radius,
+    center.y + Math.sin(angle) * radius * 0.6,
+    center.z + Math.sin(time * 0.3 + index) * 0.3
+  );
+}
 
-function ParticlesField() {
-  const count = 250;
+/* ═══════════════════════════════════════════
+   TechNode — a single technology
+   ═══════════════════════════════════════════ */
+
+function TechNode({
+  tech,
+  position,
+  index,
+}: {
+  tech: TechDef;
+  position: THREE.Vector3;
+  index: number;
+}) {
+  const groupRef = useRef<THREE.Group>(null!);
+  const meshRef = useRef<THREE.Mesh>(null!);
+  const ringRef = useRef<THREE.Mesh>(null!);
+
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime();
+    if (!groupRef.current) return;
+    // Gentle float
+    groupRef.current.position.y = position.y + Math.sin(t * 0.8 + index) * 0.2;
+    groupRef.current.position.x = position.x + Math.cos(t * 0.6 + index) * 0.15;
+    // Pulse
+    if (meshRef.current) {
+      const s = 1 + Math.sin(t * 2 + index) * 0.06;
+      meshRef.current.scale.setScalar(s);
+    }
+    // Orbit ring rotation
+    if (ringRef.current) {
+      ringRef.current.rotation.z += 0.005;
+      ringRef.current.rotation.x += 0.003;
+    }
+  });
+
+  const shapeGeometry = useMemo(() => {
+    switch (tech.shape) {
+      case "cube":
+        return <boxGeometry args={[0.35, 0.35, 0.35]} />;
+      case "octahedron":
+        return <octahedronGeometry args={[0.3, 0]} />;
+      case "torus":
+        return <torusGeometry args={[0.22, 0.07, 8, 16]} />;
+      case "cone":
+        return <coneGeometry args={[0.22, 0.4, 8]} />;
+      case "icosahedron":
+        return <icosahedronGeometry args={[0.28, 0]} />;
+      case "sphere":
+      default:
+        return <sphereGeometry args={[0.28, 16, 16]} />;
+    }
+  }, [tech.shape]);
+
+  return (
+    <group ref={groupRef} position={position}>
+      {/* Orbiting ring */}
+      <mesh ref={ringRef}>
+        <torusGeometry args={[0.45, 0.012, 8, 32]} />
+        <meshBasicMaterial color={tech.orbitColor} transparent opacity={0.2} depthWrite={false} />
+      </mesh>
+
+      {/* Glow halo */}
+      <mesh>
+        <sphereGeometry args={[0.5, 16, 16]} />
+        <meshBasicMaterial color={tech.color} transparent opacity={0.06} depthWrite={false} />
+      </mesh>
+
+      {/* Main shape */}
+      <mesh ref={meshRef} castShadow>
+        {shapeGeometry}
+        <meshStandardMaterial
+          color={tech.color}
+          roughness={0.3}
+          metalness={0.4}
+          emissive={tech.color}
+          emissiveIntensity={0.3}
+        />
+      </mesh>
+
+      {/* Label */}
+      <Html
+        position={[0, 0.55, 0]}
+        center
+        distanceFactor={8}
+        className="pointer-events-none"
+      >
+        <span className="text-[10px] font-medium text-white/60 whitespace-nowrap bg-[#070B1E]/60 px-1.5 py-0.5 rounded backdrop-blur-sm">
+          {tech.name}
+        </span>
+      </Html>
+    </group>
+  );
+}
+
+/* ═══════════════════════════════════════════
+   ConnectionLine — between two nodes
+   ═══════════════════════════════════════════ */
+
+function ConnectionLine({
+  start,
+  end,
+  color,
+}: {
+  start: THREE.Vector3;
+  end: THREE.Vector3;
+  color: string;
+}) {
+  const points = useMemo(() => {
+    const mid = new THREE.Vector3(
+      (start.x + end.x) / 2,
+      (start.y + end.y) / 2 + 0.3,
+      (start.z + end.z) / 2
+    );
+    const curve = new THREE.QuadraticBezierCurve3(start, mid, end);
+    return curve.getPoints(20);
+  }, [start, end]);
+
+  return (
+    <Line
+      points={points}
+      color={color}
+      transparent
+      opacity={0.12}
+      depthWrite={false}
+      lineWidth={1}
+    />
+  );
+}
+
+/* ═══════════════════════════════════════════
+   DataParticles — flowing dots along connections
+   ═══════════════════════════════════════════ */
+
+function DataParticles({ clusterCenter }: { clusterCenter: THREE.Vector3 }) {
+  const count = 40;
   const meshRef = useRef<THREE.Points>(null!);
 
   const { positions, colors, sizes } = useMemo(() => {
@@ -151,21 +289,20 @@ function ParticlesField() {
     const col = new Float32Array(count * 3);
     const siz = new Float32Array(count);
     for (let i = 0; i < count; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 20;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 18;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 16 + 10;
-      col[i * 3] = 0.08 + Math.random() * 0.18;
-      col[i * 3 + 1] = 0.25 + Math.random() * 0.3;
-      col[i * 3 + 2] = 0.6 + Math.random() * 0.4;
-      siz[i] = Math.random() * 0.07 + 0.02;
+      pos[i * 3] = clusterCenter.x + (Math.random() - 0.5) * 5;
+      pos[i * 3 + 1] = clusterCenter.y + (Math.random() - 0.5) * 4;
+      pos[i * 3 + 2] = clusterCenter.z + (Math.random() - 0.5) * 3 + 3;
+      col[i * 3] = 0.08 + Math.random() * 0.12;
+      col[i * 3 + 1] = 0.3 + Math.random() * 0.2;
+      col[i * 3 + 2] = 0.7 + Math.random() * 0.3;
+      siz[i] = Math.random() * 0.04 + 0.01;
     }
     return { positions: pos, colors: col, sizes: siz };
-  }, []);
+  }, [clusterCenter]);
 
   useFrame(() => {
     if (!meshRef.current) return;
-    meshRef.current.rotation.y += 0.0002;
-    meshRef.current.rotation.x += 0.00008;
+    meshRef.current.rotation.y += 0.0003;
   });
 
   return (
@@ -176,10 +313,10 @@ function ParticlesField() {
         <bufferAttribute attach="attributes-size" args={[sizes, 1]} />
       </bufferGeometry>
       <pointsMaterial
-        size={0.06}
+        size={0.04}
         vertexColors
         transparent
-        opacity={0.55}
+        opacity={0.5}
         blending={THREE.AdditiveBlending}
         depthWrite={false}
       />
@@ -187,132 +324,176 @@ function ParticlesField() {
   );
 }
 
-/* ───────────────────────────────────────────
-   Station Markers
-   ─────────────────────────────────────────── */
+/* ═══════════════════════════════════════════
+   TechCluster — group of TechNodes + connections
+   ═══════════════════════════════════════════ */
 
-function StationMarker({
-  position,
-  index,
-}: {
-  position: THREE.Vector3;
-  index: number;
-}) {
-  const ringRef = useRef<THREE.Mesh>(null!);
-  const coreRef = useRef<THREE.Mesh>(null!);
+function TechCluster({ cluster }: { cluster: TechClusterDef }) {
+  const radius = 1.4;
+  const total = cluster.techs.length;
 
-  useFrame((state) => {
-    const t = state.clock.getElapsedTime();
-    if (ringRef.current) {
-      ringRef.current.rotation.z += 0.008;
-      ringRef.current.rotation.x += 0.004;
-      ringRef.current.scale.setScalar(1 + Math.sin(t * 2 + index) * 0.08);
+  const techPositions = useMemo(() => {
+    if (total === 0) return [];
+    return cluster.techs.map((_, i) => {
+      const angle = (i / total) * Math.PI * 2;
+      return new THREE.Vector3(
+        cluster.center.x + Math.cos(angle) * radius,
+        cluster.center.y + Math.sin(angle) * radius * 0.5,
+        cluster.center.z
+      );
+    });
+  }, [cluster.center, radius, total]);
+
+  const connectionLines = useMemo(() => {
+    if (techPositions.length < 2) return [];
+    const lines: { start: THREE.Vector3; end: THREE.Vector3; color: string }[] = [];
+    for (let i = 0; i < techPositions.length; i++) {
+      const next = (i + 1) % techPositions.length;
+      lines.push({
+        start: techPositions[i],
+        end: techPositions[next],
+        color: "#2563EB",
+      });
     }
-    if (coreRef.current) {
-      coreRef.current.scale.setScalar(1 + Math.sin(t * 3 + index * 1.5) * 0.12);
-    }
-  });
+    return lines;
+  }, [techPositions]);
 
   return (
-    <group position={position}>
-      <mesh ref={ringRef}>
-        <torusGeometry args={[0.3, 0.025, 16, 32]} />
-        <meshBasicMaterial color="#2563EB" transparent opacity={0.5} />
-      </mesh>
-      <mesh ref={coreRef}>
-        <sphereGeometry args={[0.1, 16, 16]} />
-        <meshBasicMaterial color="#2563EB" transparent opacity={0.85} />
-      </mesh>
-      <mesh>
-        <sphereGeometry args={[0.22, 16, 16]} />
-        <meshBasicMaterial color="#2563EB" transparent opacity={0.12} depthWrite={false} />
-      </mesh>
+    <group>
+      {/* Connections */}
+      {connectionLines.map((line, i) => (
+        <ConnectionLine
+          key={i}
+          start={line.start}
+          end={line.end}
+          color={line.color}
+        />
+      ))}
+
+      {/* Data particles around cluster */}
+      <DataParticles clusterCenter={cluster.center} />
+
+      {/* Tech nodes */}
+      {cluster.techs.map((tech, i) => (
+        <TechNode
+          key={tech.name}
+          tech={tech}
+          position={techPositions[i]}
+          index={i}
+        />
+      ))}
+
+      {/* Cluster label (only for skill clusters) */}
+      {cluster.type === "skills" && (
+        <Html
+          position={[
+            cluster.center.x,
+            cluster.center.y + radius + 0.7,
+            cluster.center.z,
+          ]}
+          center
+          distanceFactor={10}
+          className="pointer-events-none"
+        >
+          <span className="text-xs font-semibold text-white/35 uppercase tracking-[0.2em] whitespace-nowrap bg-[#070B1E]/50 px-2 py-1 rounded backdrop-blur-sm">
+            {cluster.label}
+          </span>
+        </Html>
+      )}
     </group>
   );
 }
 
-/* ───────────────────────────────────────────
-   Path Line
-   ─────────────────────────────────────────── */
+/* ═══════════════════════════════════════════
+   Ambient Particles
+   ═══════════════════════════════════════════ */
 
-function PathLine({ points }: { points: THREE.Vector3[] }) {
-  const curve = useMemo(
-    () => new THREE.CatmullRomCurve3(points, false, "catmullrom", 0.5),
-    [points]
-  );
-  const linePoints = useMemo(() => curve.getPoints(150), [curve]);
+function AmbientParticles() {
+  const count = 180;
+  const meshRef = useRef<THREE.Points>(null!);
 
-  return (
-    <Line
-      points={linePoints}
-      color="#2563EB"
-      transparent
-      opacity={0.18}
-      depthWrite={false}
-      lineWidth={1}
-    />
-  );
-}
-
-/* ───────────────────────────────────────────
-   Floating Geometries
-   ─────────────────────────────────────────── */
-
-function FloatingGeometries() {
-  const geometries = useMemo(() => {
-    const items: {
-      position: THREE.Vector3;
-      type: "box" | "torus" | "cone";
-      speed: number;
-    }[] = [];
-    for (let i = 0; i < 12; i++) {
-      items.push({
-        position: new THREE.Vector3(
-          (Math.random() - 0.5) * 14,
-          (Math.random() - 0.5) * 12,
-          (Math.random() - 0.5) * 10 + 10
-        ),
-        type: (["box", "torus", "cone"] as const)[i % 3],
-        speed: 0.4 + Math.random() * 1.6,
-      });
+  const { positions, colors, sizes } = useMemo(() => {
+    const pos = new Float32Array(count * 3);
+    const col = new Float32Array(count * 3);
+    const siz = new Float32Array(count);
+    for (let i = 0; i < count; i++) {
+      pos[i * 3] = (Math.random() - 0.5) * 30;
+      pos[i * 3 + 1] = (Math.random() - 0.5) * 25;
+      pos[i * 3 + 2] = (Math.random() - 0.5) * 20 + 10;
+      col[i * 3] = 0.02 + Math.random() * 0.08;
+      col[i * 3 + 1] = 0.1 + Math.random() * 0.15;
+      col[i * 3 + 2] = 0.3 + Math.random() * 0.25;
+      siz[i] = Math.random() * 0.05 + 0.01;
     }
-    return items;
+    return { positions: pos, colors: col, sizes: siz };
   }, []);
 
+  useFrame(() => {
+    if (!meshRef.current) return;
+    meshRef.current.rotation.y += 0.00015;
+  });
+
   return (
-    <>
-      {geometries.map((item, i) => (
-        <Float
-          key={i}
-          speed={item.speed}
-          rotationIntensity={0.5}
-          floatIntensity={0.7}
-        >
-          <mesh position={item.position}>
-            {item.type === "box" && <boxGeometry args={[0.25, 0.25, 0.25]} />}
-            {item.type === "torus" && (
-              <torusGeometry args={[0.18, 0.05, 8, 16]} />
-            )}
-            {item.type === "cone" && (
-              <coneGeometry args={[0.15, 0.3, 8]} />
-            )}
-            <meshBasicMaterial
-              color="#2563EB"
-              transparent
-              opacity={0.1}
-              wireframe
-              depthWrite={false}
-            />
-          </mesh>
-        </Float>
-      ))}
-    </>
+    <points ref={meshRef}>
+      <bufferGeometry>
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+        <bufferAttribute attach="attributes-color" args={[colors, 3]} />
+        <bufferAttribute attach="attributes-size" args={[sizes, 1]} />
+      </bufferGeometry>
+      <pointsMaterial
+        size={0.04}
+        vertexColors
+        transparent
+        opacity={0.45}
+        blending={THREE.AdditiveBlending}
+        depthWrite={false}
+      />
+    </points>
   );
 }
 
-/* ───────────────────────────────────────────
-   Camera Rig
-   ─────────────────────────────────────────── */
+/* ═══════════════════════════════════════════
+   District Rings — subtle ring around each cluster center
+   ═══════════════════════════════════════════ */
+
+function DistrictRing({ position }: { position: THREE.Vector3 }) {
+  return (
+    <mesh position={position} rotation={[Math.PI / 2.5, 0, 0]}>
+      <torusGeometry args={[2, 0.015, 8, 64]} />
+      <meshBasicMaterial color="#2563EB" transparent opacity={0.08} depthWrite={false} />
+    </mesh>
+  );
+}
+
+/* ═══════════════════════════════════════════
+   Camera Rig — CatmullRom path visiting all clusters
+   ═══════════════════════════════════════════ */
+
+// Build a path that visits each cluster center + offset for camera distance
+const cameraPathPoints = (() => {
+  const pts: THREE.Vector3[] = [];
+  // Start far out
+  pts.push(new THREE.Vector3(0, 8, 22));
+  // Visit hero
+  pts.push(new THREE.Vector3(0, 7, 16));
+  // Between frontend and backend
+  pts.push(new THREE.Vector3(0, 3.5, 10));
+  // Frontend close
+  pts.push(new THREE.Vector3(-3.5, 2.5, 7));
+  // Backend close
+  pts.push(new THREE.Vector3(3.5, 2, 7));
+  // Between infra and automation
+  pts.push(new THREE.Vector3(0, -1, 7));
+  // Infra close
+  pts.push(new THREE.Vector3(-3.5, -1.5, 7));
+  // Automation close
+  pts.push(new THREE.Vector3(3.5, -2, 7));
+  // Projects area
+  pts.push(new THREE.Vector3(0, -5, 7));
+  // Contact finale
+  pts.push(new THREE.Vector3(0, -8, 7));
+  return pts;
+})();
 
 function CameraRig({ progress }: { progress: number }) {
   const { camera } = useThree();
@@ -320,7 +501,7 @@ function CameraRig({ progress }: { progress: number }) {
   const smoothProgress = useRef(progress);
 
   const curve = useMemo(
-    () => new THREE.CatmullRomCurve3(rawPathPoints, false, "catmullrom", 0.5),
+    () => new THREE.CatmullRomCurve3(cameraPathPoints, false, "catmullrom", 0.5),
     []
   );
 
@@ -329,60 +510,169 @@ function CameraRig({ progress }: { progress: number }) {
   }, [progress]);
 
   useFrame(() => {
-    smoothProgress.current = lerp(
-      smoothProgress.current,
-      targetProgress.current,
-      0.04
-    );
+    smoothProgress.current = lerp(smoothProgress.current, targetProgress.current, 0.04);
     const t = smoothProgress.current;
     const point = curve.getPointAt(t);
-    const lookAhead = curve.getPointAt(Math.min(t + 0.015, 1));
-    const lookTarget = lerpV3(point, lookAhead, 0.5);
+    const lookAhead = curve.getPointAt(Math.min(t + 0.012, 1));
+    const lookTarget = lerpV3(point, lookAhead, 0.6);
 
     camera.position.copy(point);
-    camera.lookAt(lookTarget.x, lookTarget.y + 0.5, lookTarget.z);
+    camera.lookAt(lookTarget.x, lookTarget.y, lookTarget.z);
   });
 
   return null;
 }
 
-/* ───────────────────────────────────────────
+/* ═══════════════════════════════════════════
    Scene Content
-   ─────────────────────────────────────────── */
+   ═══════════════════════════════════════════ */
 
 function SceneContent({ progress }: { progress: number }) {
   return (
     <>
       <color attach="background" args={["#070B1E"]} />
-      <fog attach="fog" args={["#070B1E", 6, 35]} />
+      <fog attach="fog" args={["#070B1E", 8, 40]} />
 
-      <ambientLight intensity={0.25} color="#2563EB" />
-      <pointLight position={[5, 5, 12]} intensity={2.5} color="#2563EB" distance={22} />
-      <pointLight position={[-4, -2, 7]} intensity={1.2} color="#7C3AED" distance={16} />
-      <pointLight position={[0, 0, 4]} intensity={0.6} color="#00E5FF" distance={12} />
+      <ambientLight intensity={0.3} color="#1E3A8A" />
+      <pointLight position={[8, 5, 14]} intensity={3} color="#2563EB" distance={30} />
+      <pointLight position={[-8, -3, 10]} intensity={1.5} color="#7C3AED" distance={25} />
+      <pointLight position={[0, 0, 6]} intensity={0.8} color="#00E5FF" distance={18} />
 
-      <ParticlesField />
-      <PathLine points={rawPathPoints} />
-      {stationPositions.map((pos, i) => (
-        <StationMarker key={i} position={pos} index={i} />
+      <AmbientParticles />
+
+      {/* District rings */}
+      {clusters.filter(c => c.type === "skills").map((c) => (
+        <DistrictRing key={c.id} position={c.center} />
       ))}
-      <FloatingGeometries />
+
+      {/* Tech clusters — all non-empty */}
+      {clusters.map((c) => {
+        if (c.techs.length > 0) {
+          return <TechCluster key={c.id} cluster={c} />;
+        }
+        // Empty clusters (hero, projects, contact) — subtle floating indicator
+        return (
+          <Float key={c.id} speed={2.5} rotationIntensity={0} floatIntensity={0.3}>
+            <mesh position={c.center}>
+              {c.type === "hero" && <octahedronGeometry args={[0.6, 0]} />}
+              {c.type === "project" && <boxGeometry args={[0.5, 0.5, 0.5]} />}
+              {c.type === "contact" && <torusGeometry args={[0.5, 0.06, 16, 32]} />}
+              {(c.type === "skills" || c.type === "about") && null}
+              <meshStandardMaterial
+                color="#2563EB"
+                roughness={0.3}
+                metalness={0.5}
+                emissive="#2563EB"
+                emissiveIntensity={0.35}
+              />
+            </mesh>
+          </Float>
+        );
+      })}
 
       <CameraRig progress={progress} />
     </>
   );
 }
 
-/* ───────────────────────────────────────────
-   Overlay — rich content per station
-   ─────────────────────────────────────────── */
+/* ═══════════════════════════════════════════
+   Station ranges for overlays
+   ═══════════════════════════════════════════ */
+
+interface StationRange {
+  id: string;
+  type: "hero" | "about" | "skills" | "project" | "contact";
+  label: string;
+  progressRange: [number, number];
+  subtitle?: string;
+  projectIndex?: number;
+  tags?: string[];
+}
+
+const stationRanges: StationRange[] = [
+  { id: "hero", type: "hero", label: "Andrea Cruz", progressRange: [0, 0.11] },
+  {
+    id: "about",
+    type: "about",
+    label: "Sobre mi",
+    progressRange: [0.12, 0.22],
+  },
+  {
+    id: "skills-frontend",
+    type: "skills",
+    label: "Frontend",
+    progressRange: [0.23, 0.34],
+    tags: ["React", "Next.js", "TypeScript", "TailwindCSS"],
+  },
+  {
+    id: "skills-backend",
+    type: "skills",
+    label: "Backend",
+    progressRange: [0.35, 0.46],
+    tags: ["Python", "FastAPI", "PostgreSQL", "PHP"],
+  },
+  {
+    id: "skills-infra",
+    type: "skills",
+    label: "Infraestructura",
+    progressRange: [0.47, 0.58],
+    tags: ["Docker", "Nginx", "Linux VPS", "SSL", "Git"],
+  },
+  {
+    id: "skills-automation",
+    type: "skills",
+    label: "Automatizacion",
+    progressRange: [0.59, 0.70],
+    tags: ["n8n", "Odoo 19", "APIs REST", "Webhooks"],
+  },
+  {
+    id: "project-1",
+    type: "project",
+    label: "WorkShift",
+    subtitle: "App de fichaje laboral",
+    projectIndex: 0,
+    progressRange: [0.71, 0.77],
+    tags: ["FastAPI", "React", "PostgreSQL", "Docker"],
+  },
+  {
+    id: "project-2",
+    type: "project",
+    label: "GastoDeHoy",
+    subtitle: "Presupuesto personal",
+    projectIndex: 1,
+    progressRange: [0.78, 0.84],
+    tags: ["FastAPI", "React", "n8n", "PostgreSQL"],
+  },
+  {
+    id: "project-3",
+    type: "project",
+    label: "Hermes Agent",
+    subtitle: "Asistente IA autonomo",
+    projectIndex: 2,
+    progressRange: [0.85, 0.91],
+    tags: ["Python", "Docker", "n8n", "MCP"],
+  },
+  {
+    id: "contact",
+    type: "contact",
+    label: "Hablemos",
+    subtitle: "Disponible para proyectos y colaboraciones",
+    progressRange: [0.92, 1.0],
+  },
+];
+
+/* ═══════════════════════════════════════════
+   Overlay
+   ═══════════════════════════════════════════ */
+
+const aboutPreview = aboutText.split("\n\n")[0];
 
 function Overlay({ progress }: { progress: number }) {
-  const active = stations.find(
+  const active = stationRanges.find(
     (s) => progress >= s.progressRange[0] && progress <= s.progressRange[1]
   );
 
-  const renderStation = (station: Station) => {
+  const renderStation = (station: StationRange) => {
     switch (station.type) {
       case "hero":
         return (
@@ -392,7 +682,7 @@ function Overlay({ progress }: { progress: number }) {
               <span>disponible para proyectos</span>
             </div>
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none mb-4">
-              <AuroraText speed="slow">Andrea Cruz</AuroraText>
+              <AuroraText speed="slow">{personalInfo.name}</AuroraText>
             </h1>
             <div className="text-2xl sm:text-3xl md:text-4xl text-white/90 font-light mb-6">
               <SparklesText
@@ -413,10 +703,10 @@ function Overlay({ progress }: { progress: number }) {
         return (
           <div className="text-center max-w-xl mx-auto px-4">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-5 tracking-tight">
-              {station.title}
+              Sobre mi
             </h2>
             <p className="text-base sm:text-lg text-white/60 leading-relaxed">
-              {station.description}
+              {aboutPreview}
             </p>
           </div>
         );
@@ -425,7 +715,7 @@ function Overlay({ progress }: { progress: number }) {
         return (
           <div className="text-center max-w-2xl mx-auto px-4">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-              {station.title}
+              {station.label}
             </h2>
             <div className="flex flex-wrap justify-center gap-2.5">
               {(station.tags || []).map((skill) => (
@@ -437,35 +727,43 @@ function Overlay({ progress }: { progress: number }) {
                 </span>
               ))}
             </div>
-            <div className="flex flex-wrap justify-center gap-2 mt-5">
-              {skillCategories.map((cat) => (
-                <span
-                  key={cat.name}
-                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/[0.02] text-xs text-white/35 border border-white/[0.04]"
-                >
-                  {cat.name}
-                </span>
-              ))}
-            </div>
           </div>
         );
 
-      case "project":
+      case "project": {
+        const proj = station.projectIndex !== undefined ? projects[station.projectIndex] : null;
         return (
           <div className="text-center max-w-lg mx-auto px-4">
             <p className="text-xs sm:text-sm uppercase tracking-[0.2em] text-[#2563EB] mb-3 font-medium">
               Proyecto destacado
             </p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 tracking-tight">
-              {station.title}
+              {station.label}
             </h2>
-            <p className="text-lg sm:text-xl text-white/40 mb-3">
-              {station.subtitle}
-            </p>
-            <p className="text-sm sm:text-base text-white/55 leading-relaxed mb-5 max-w-md mx-auto">
-              {station.description}
-            </p>
-            <div className="flex flex-wrap justify-center gap-2">
+            {station.subtitle && (
+              <p className="text-lg sm:text-xl text-white/40 mb-3">
+                {station.subtitle}
+              </p>
+            )}
+            {proj && (
+              <>
+                <p className="text-sm sm:text-base text-white/55 leading-relaxed mb-5 max-w-md mx-auto">
+                  {proj.description}
+                </p>
+                {proj.github && (
+                  <a
+                    href={proj.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs text-[#2563EB]/70 hover:text-[#2563EB] transition-colors pointer-events-auto"
+                  >
+                    <CaretRight className="w-3 h-3" />
+                    Ver codigo en GitHub
+                  </a>
+                )}
+              </>
+            )}
+            <div className="flex flex-wrap justify-center gap-2 mt-4">
               {(station.tags || []).map((tag) => (
                 <span
                   key={tag}
@@ -477,12 +775,13 @@ function Overlay({ progress }: { progress: number }) {
             </div>
           </div>
         );
+      }
 
       case "contact":
         return (
           <div className="text-center max-w-md mx-auto px-4">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
-              {station.title}
+              {station.label}
             </h2>
             <p className="text-base sm:text-lg text-white/50 mb-8">
               {station.subtitle}
@@ -526,9 +825,9 @@ function Overlay({ progress }: { progress: number }) {
   );
 }
 
-/* ───────────────────────────────────────────
+/* ═══════════════════════════════════════════
    Scroll Progress Bar
-   ─────────────────────────────────────────── */
+   ═══════════════════════════════════════════ */
 
 function ScrollBar({ progress }: { progress: number }) {
   return (
@@ -547,9 +846,9 @@ function ScrollBar({ progress }: { progress: number }) {
   );
 }
 
-/* ───────────────────────────────────────────
+/* ═══════════════════════════════════════════
    Main Component
-   ─────────────────────────────────────────── */
+   ═══════════════════════════════════════════ */
 
 export default function Scroll3DScene() {
   const sectionRef = useRef<HTMLDivElement>(null!);
@@ -597,7 +896,7 @@ export default function Scroll3DScene() {
         <Canvas
           gl={{ antialias: true, alpha: false }}
           dpr={[1, 1.5]}
-          camera={{ position: [0, 7, 20], fov: 60, near: 0.5, far: 50 }}
+          camera={{ position: [0, 8, 22], fov: 60, near: 0.5, far: 60 }}
         >
           <SceneContent progress={progress} />
         </Canvas>
