@@ -19,6 +19,7 @@ import { Particles } from "@/components/effects/Particles"
 import { OrbitingCircles } from "@/components/effects/OrbitingCircles"
 import { SparklesText } from "@/components/effects/SparklesText"
 import DisplayCards from "@/components/effects/DisplayCards"
+import Scroll3DScene from "@/components/effects/Scroll3DScene"
 
 const categoryIcons: Record<string, React.ReactNode> = {
   monitor: <Monitor className="w-5 h-5" />,
@@ -215,6 +216,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* 3D Scroll-Driven Project Explorer */}
+      <Scroll3DScene />
+
     </>
   )
 }
