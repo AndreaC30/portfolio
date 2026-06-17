@@ -56,8 +56,8 @@ export default function ContactPage() {
     <div className="relative">
       {/* Atmospheric background */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden>
-        <div className="absolute top-0 left-1/4 w-[600px] h-[400px] rounded-full bg-primary/5 blur-[120px]" />
-        <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[300px] rounded-full bg-[#00E5FF]/[0.04] blur-[100px]" />
+        <div className="absolute top-[20%] right-[10%] w-[600px] h-[400px] rounded-full bg-primary/5 blur-[120px]" />
+        <div className="absolute bottom-[0] left-[20%] w-[400px] h-[300px] rounded-full bg-[#2DD4BF]/[0.03] blur-[100px]" />
       </div>
 
       <section className="relative z-10 container mx-auto px-4 py-16 sm:py-24 max-w-5xl">
@@ -230,8 +230,8 @@ export default function ContactPage() {
           </div>
 
           {/* ── Right: Contact Info (40%) ── */}
-          <FadeIn delay={0.1}>
-            <div className="lg:col-span-2">
+          <div className="lg:col-span-2">
+            <FadeIn delay={0.1}>
               <h2 className="text-lg font-semibold mb-5">
                 Información de contacto
               </h2>
@@ -276,8 +276,8 @@ export default function ContactPage() {
                   <span className="text-sm">{personalInfo.location}</span>
                 </div>
               </div>
-            </div>
-          </FadeIn>
+            </FadeIn>
+          </div>
         </div>
       </section>
     </div>

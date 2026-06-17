@@ -1,7 +1,6 @@
 import { aboutText, skillCategories } from "@/lib/data"
 import { Monitor, Server, Terminal, Workflow } from "lucide-react"
 import SectionWithMockup from "@/components/effects/SectionWithMockup"
-import { AuroraText } from "@/components/effects/AuroraText"
 import FadeIn from "@/components/fade-in"
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -16,47 +15,35 @@ export default function AboutPage() {
 
   return (
     <>
-      {/* Section with Mockup — Full Stack Development */}
-      <SectionWithMockup
-        title={
-          <>
-            Desarrollo Full Stack
-            <br />
-            con propósito
-          </>
-        }
-        description={
-          <>
-            Construyo aplicaciones web completas desde el frontend con React y Next.js hasta el
-            backend con Python, FastAPI y PostgreSQL. Cada proyecto lo despliego con Docker en mi
-            propia infraestructura Linux, automatizando procesos con n8n y manteniendo todo bajo
-            control con Git. Me apasiona crear soluciones que realmente funcionan en producción,
-            optimizadas, seguras y mantenibles.
-          </>
-        }
-        primaryImageSrc="/projects/n8n-workflow.png"
-        secondaryImageSrc="/projects/hermes-panel.png"
-      />
-
       {/* Atmospheric background */}
       <div className="relative">
         <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden>
-          <div className="absolute top-0 left-1/4 w-[600px] h-[400px] rounded-full bg-primary/5 blur-[120px]" />
-          <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[300px] rounded-full bg-[#00E5FF]/[0.04] blur-[100px]" />
+          <div className="absolute top-[-100px] left-[10%] w-[600px] h-[400px] rounded-full bg-primary/6 blur-[120px]" />
+          <div className="absolute bottom-[5%] right-[5%] w-[400px] h-[300px] rounded-full bg-[#00E5FF]/[0.03] blur-[100px]" />
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 py-16 sm:py-24">
-          {/* Header */}
-          <FadeIn delay={0}>
-            <div className="mb-16 text-center">
-              <h1 className="text-4xl sm:text-5xl font-bold mb-4 heading-balanced">
-                <AuroraText speed="slow">Sobre mí</AuroraText>
-              </h1>
-              <p className="text-muted-foreground max-w-xl mx-auto">
-                Construyo aplicaciones web y automatizaciones que resuelven problemas reales
-              </p>
-            </div>
-          </FadeIn>
+          {/* Section with Mockup — serves as the page intro, replaces the h1 */}
+          <SectionWithMockup
+            title={
+              <>
+                Desarrollo Full Stack
+                <br />
+                con propósito
+              </>
+            }
+            description={
+              <>
+                Construyo aplicaciones web completas desde el frontend con React y Next.js hasta el
+                backend con Python, FastAPI y PostgreSQL. Cada proyecto lo despliego con Docker en mi
+                propia infraestructura Linux, automatizando procesos con n8n y manteniendo todo bajo
+                control con Git. Me apasiona crear soluciones que realmente funcionan en producción,
+                optimizadas, seguras y mantenibles.
+              </>
+            }
+            primaryImageSrc="/projects/n8n-workflow.png"
+            secondaryImageSrc="/projects/hermes-panel.png"
+          />
 
           {/* About text */}
           <FadeIn delay={0.1}>

@@ -1,39 +1,41 @@
-# Portfolio — Andrea Cruz Hernández
+# Portfolio — Andrea Cruz Hernandez
 
 ![Portfolio](./public/og-image.png)
 
-Portfolio profesional de **Andrea Guadalupe Cruz Hernández** — Full Stack Developer especializada en observabilidad industrial, automatización e IA.
+Portfolio profesional de **Andrea Guadalupe Cruz Hernandez** — Full Stack Developer especializada en desarrollo web, automatizacion e infraestructura self-hosted.
 
-Construido con **Next.js 15**, **TypeScript**, **TailwindCSS**, **shadcn/ui** y **Framer Motion**.
+Construido con **Next.js 16**, **TypeScript**, **Tailwind CSS v4**, **Three.js** y **Framer Motion**.
 
-## 🌐 URL
+## URL
 
 **https://resume.andreacruz.es**
 
-## 📋 Secciones
+## Secciones
 
-| Página | Descripción |
+| Pagina | Descripcion |
 |--------|-------------|
-| **Home** | Landing con efecto máquina de escribir y gradientes |
-| **Sobre mí** | Perfil profesional, enfoque técnico y filosofía de trabajo |
+| **Home** | Experiencia 3D scroll-driven con Three.js — 8 estaciones interactivas |
+| **Sobre mi** | Perfil profesional, tecnologias y filosofia de trabajo |
 | **Experiencia** | Timeline vertical — CIVIR (actual) y Teleperformance |
-| **Skills** | 6 categorías técnicas con badges animados |
-| **Proyectos** | 4 proyectos destacados con stack y enlaces |
-| **Contacto** | Email, GitHub, LinkedIn + formulario de contacto |
+| **Skills** | Categorias tecnicas con tags animados + marquee de tecnologias |
+| **Proyectos** | 4 proyectos destacados con stack, problema/solucion/resultado |
+| **AI Labs** | Agentes IA autonomos, automatizacion n8n, herramientas IA |
+| **Contacto** | Email, GitHub, LinkedIn + formulario con EmailJS |
 
-## 🛠️ Stack
+## Stack
 
-| Tecnología | Uso |
+| Tecnologia | Uso |
 |------------|-----|
-| Next.js 15 (App Router) | Framework React |
-| TypeScript | Tipado estático |
-| TailwindCSS v4 | Estilos utilitarios |
-| shadcn/ui | Componentes de interfaz |
-| Framer Motion | Animaciones |
-| Lucide React | Iconografía |
-| Inter + JetBrains Mono | Tipografía |
+| Next.js 16 (App Router) | Framework React — static export |
+| TypeScript | Tipado estatico |
+| Tailwind CSS v4 | Estilos utilitarios |
+| shadcn/ui | Componentes base |
+| Framer Motion | Animaciones declarativas |
+| Three.js + R3F + Drei | Escena 3D scroll-driven |
+| Phosphor Icons | Iconografia principal |
+| Lucide React | Iconografia secundaria |
 
-## 🚀 Desarrollo local
+## Desarrollo local
 
 ```bash
 git clone https://github.com/AndreaC30/portfolio.git
@@ -43,20 +45,21 @@ npm run dev
 # Abrir http://localhost:3000
 ```
 
-## 📦 Build producción
+## Build produccion
 
 ```bash
 npm run build
-npm start
+# La salida estatica se genera en out/
 ```
 
-## 🎨 Diseño
+## Diseno
 
-- **Estilo:** tech dashboard oscuro, minimalista técnico
-- **Colores:** Negro carbón, azul eléctrico (#3b82f6), verde observabilidad (#10b981)
-- **Animaciones:** Fade-in en scroll, hover effects, typing effect en Hero
-- **Tipografía:** Inter (general) + JetBrains Mono (código/técnico)
+- **Estilo:** Premium dark, atmosfera inmersiva con orbes difusos y particulas 3D
+- **Colores:** #070B1E (fondo), #0A194B (cards), #2563EB (acento azul), #00E5FF (cyan), #7C3AED (violeta)
+- **Animaciones:** AuroraText en titulos, SparklesText, FadeIn escalonado, cards con sheen+lift, scroll-driven 3D
+- **Efectos:** ShineBorder, Marquee, Particles, OrbitingCircles, Display Cards, Section With Mockup
+- **Tipografia:** Inter (general) + JetBrains Mono (codigo/tecnico)
 
-## 📄 Licencia
+## Licencia
 
-© 2026 Andrea Guadalupe Cruz Hernández. Todos los derechos reservados.
+(c) 2026 Andrea Guadalupe Cruz Hernandez. Todos los derechos reservados.
