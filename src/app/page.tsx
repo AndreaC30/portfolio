@@ -18,6 +18,7 @@ import { Marquee } from "@/components/effects/Marquee"
 import { Particles } from "@/components/effects/Particles"
 import { OrbitingCircles } from "@/components/effects/OrbitingCircles"
 import { SparklesText } from "@/components/effects/SparklesText"
+import DisplayCards from "@/components/effects/DisplayCards"
 
 const categoryIcons: Record<string, React.ReactNode> = {
   monitor: <Monitor className="w-5 h-5" />,
@@ -180,6 +181,37 @@ export default function Home() {
                 {cat.name}
               </span>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Projects — stacked DisplayCards */}
+      <section className="py-16 md:py-24 px-6 border-t border-border/50">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
+            <h2 className="text-sm font-medium uppercase tracking-[0.15em] text-muted-foreground whitespace-nowrap">
+              Proyectos Destacados
+            </h2>
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
+          </div>
+
+          <p className="text-xs sm:text-sm text-muted-foreground mb-10">
+            Pasa el raton por encima para explorar
+          </p>
+
+          <div className="flex justify-center">
+            <DisplayCards />
+          </div>
+
+          <div className="mt-12">
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group py-2"
+            >
+              Ver todos los proyectos
+              <CaretRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+            </Link>
           </div>
         </div>
       </section>
