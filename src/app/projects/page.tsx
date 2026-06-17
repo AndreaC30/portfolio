@@ -19,11 +19,12 @@ import {
   ArrowRight,
 } from "lucide-react"
 import Link from "next/link"
+import { ShineBorder } from "@/components/effects/ShineBorder"
 
 const sectionConfig = [
   { key: "problem" as const, icon: Lightbulb, label: "PROBLEMA", color: "text-chart-2", bg: "bg-chart-2/10" },
-  { key: "solution" as const, icon: Sparkles, label: "SOLUCIÓN", color: "text-primary", bg: "bg-primary/10" },
-  { key: "implementation" as const, icon: Code2, label: "IMPLEMENTACIÓN", color: "text-chart-5", bg: "bg-chart-5/10" },
+  { key: "solution" as const, icon: Sparkles, label: "SOLUCION", color: "text-primary", bg: "bg-primary/10" },
+  { key: "implementation" as const, icon: Code2, label: "IMPLEMENTACION", color: "text-chart-5", bg: "bg-chart-5/10" },
   { key: "result" as const, icon: TrendingUp, label: "RESULTADO", color: "text-chart-3", bg: "bg-chart-3/10" },
 ]
 
@@ -40,17 +41,17 @@ export default function ProjectsPage() {
         </div>
         <div className="h-px w-[200px] bg-primary/30 max-w-[200px]" />
         <p className="mt-6 text-muted-foreground text-lg max-w-2xl">
-          Cada proyecto empieza con un problema real y termina con una solución en producción.
+          Cada proyecto empieza con un problema real y termina con una solucion en produccion.
         </p>
       </div>
 
       {/* Project Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {projects.map((project) => (
-          <div key={project.title} className="h-full">
+          <ShineBorder key={project.title} speed="slow" className="h-full">
             <Card
               className={cn(
-                "group h-full flex flex-col border-border/50 bg-card card-lift",
+                "group h-full flex flex-col border-0 bg-card card-lift",
                 "hover:border-primary/25"
               )}
             >
@@ -60,7 +61,6 @@ export default function ProjectsPage() {
                 </CardTitle>
               </CardHeader>
 
-              {/* Project Image */}
               {project.image && (
                 <div className="relative z-10 px-6 pb-4">
                   <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-border/30 bg-muted/30">
@@ -76,7 +76,6 @@ export default function ProjectsPage() {
               )}
 
               <CardContent className="flex-1 space-y-4 relative z-10">
-                {/* Problem → Solution → Implementation → Result */}
                 {sectionConfig.map(({ key, icon: Icon, label, color, bg }) => {
                   const text = project[key]
                   if (key === "implementation") {
@@ -92,7 +91,7 @@ export default function ProjectsPage() {
                           <div className="min-w-0">
                             <span
                               className={cn(
-                                "text-xs font-semibold uppercase tracking-wider",
+                                "text-xs font-semibold tracking-wider",
                                 color
                               )}
                             >
@@ -125,7 +124,7 @@ export default function ProjectsPage() {
                         <div>
                           <span
                             className={cn(
-                              "text-xs font-semibold uppercase tracking-wider",
+                              "text-xs font-semibold tracking-wider",
                               color
                             )}
                           >
@@ -154,7 +153,7 @@ export default function ProjectsPage() {
                       className="group/btn border-primary/30 transition-colors duration-200 active:scale-[0.97] hover:border-primary/60 hover:bg-primary/5"
                     >
                       <FolderGit2 className="h-4 w-4 mr-2" />
-                      Ver código
+                      Ver codigo
                       <ArrowRight className="h-3 w-3 ml-2 opacity-0 -translate-x-1 transition-all duration-200 ease-[0.23,1,0.32,1] group-hover/btn:opacity-100 group-hover/btn:translate-x-0" />
                     </Button>
                   </Link>
@@ -182,12 +181,12 @@ export default function ProjectsPage() {
                     className="border-border/30 text-muted-foreground/50 cursor-not-allowed"
                   >
                     <Monitor className="h-4 w-4 mr-2" />
-                    Demo próximamente
+                    Demo proximamente
                   </Button>
                 )}
               </CardFooter>
             </Card>
-          </div>
+          </ShineBorder>
         ))}
       </div>
     </section>
