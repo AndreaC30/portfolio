@@ -14,9 +14,11 @@ import {
   Sparkles,
   Code2,
   TrendingUp,
+  GraduationCap,
   FolderGit2,
   Monitor,
   ArrowRight,
+  Building2,
 } from "lucide-react"
 import Link from "next/link"
 import { ShineBorder } from "@/components/effects/ShineBorder"
@@ -51,7 +53,8 @@ export default function ProjectsPage() {
             </div>
             <div className="divider-fade max-w-[200px]" />
             <p className="mt-6 text-muted-foreground text-lg max-w-2xl">
-              Cada proyecto empieza con un problema real y termina con una solucion en produccion.
+              Proyectos personales y profesionales. Unos son publicos, otros son privados porque
+              pertenecen a la empresa donde trabajo. En todos he aprendido algo nuevo.
             </p>
           </div>
         </FadeIn>
@@ -67,9 +70,17 @@ export default function ProjectsPage() {
                   )}
                 >
                   <CardHeader className="relative z-10 pb-3">
-                    <CardTitle className="text-xl font-semibold tracking-tight transition-colors duration-300 group-hover:text-primary">
-                      {project.title}
-                    </CardTitle>
+                    <div className="flex items-start justify-between gap-2">
+                      <CardTitle className="text-xl font-semibold tracking-tight transition-colors duration-300 group-hover:text-primary">
+                        {project.title}
+                      </CardTitle>
+                      {project.professional && (
+                        <span className="inline-flex items-center gap-1 shrink-0 rounded-full border border-[#2DD4BF]/30 bg-[#2DD4BF]/10 text-[#2DD4BF] text-[0.6rem] px-2 py-0.5 font-semibold uppercase tracking-wider">
+                          <Building2 className="w-2.5 h-2.5" />
+                          Profesional
+                        </span>
+                      )}
+                    </div>
                   </CardHeader>
 
                   {project.image && (
@@ -104,7 +115,7 @@ export default function ProjectsPage() {
                                   {label}
                                 </span>
                                 <div className="flex flex-wrap gap-1.5 mt-2">
-                                  {project.stack.slice(0, 4).map((tech) => (
+                                  {project.stack.slice(0, 5).map((tech) => (
                                     <span
                                       key={tech}
                                       className="inline-flex items-center rounded-full border border-transparent bg-secondary text-secondary-foreground text-xs font-mono px-2.5 py-0.5 font-semibold cursor-default"
@@ -139,6 +150,25 @@ export default function ProjectsPage() {
                         </div>
                       )
                     })}
+
+                    {/* Aprendizajes */}
+                    {project.aprendizajes && (
+                      <div className="rounded-lg bg-muted/50 border border-white/[0.04] p-4 transition-colors duration-300 group-hover:border-primary/20">
+                        <div className="flex items-start gap-3">
+                          <div className="p-1.5 rounded-md shrink-0 mt-0.5 bg-primary/10">
+                            <GraduationCap className="h-4 w-4 text-primary" />
+                          </div>
+                          <div>
+                            <span className="text-xs font-semibold tracking-wider text-primary">
+                              QUE APRENDI
+                            </span>
+                            <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+                              {project.aprendizajes}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </CardContent>
 
                   <CardFooter className="relative z-10 flex flex-wrap gap-2">
@@ -166,6 +196,16 @@ export default function ProjectsPage() {
                           Ver demo
                         </Button>
                       </Link>
+                    ) : project.professional ? (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        disabled
+                        className="border-white/[0.04] text-muted-foreground/40 cursor-not-allowed"
+                      >
+                        <Building2 className="h-4 w-4 mr-2" />
+                        Codigo privado
+                      </Button>
                     ) : (
                       <Button
                         variant="outline"
