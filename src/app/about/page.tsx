@@ -34,10 +34,11 @@ export default function AboutPage() {
             }
             description={
               <>
-                Entre en CIVIR sin saber apenas nada de desarrollo web. Mi jefe no tenia tiempo para
-                ensenarme, asi que aprendi de mis companeros: Mario me enseno Docker, GitHub y a
-                usar Cursor. Un becario me enseno sobre IA y agentes. En un ano pase de no saber
-                que era un contenedor a gestionar servidores y automatizar procesos reales.
+                Empece en el mundo del desarrollo con una FP y una beca en CIVIR.
+                En poco mas de un ano pase de no saber que era Docker a gestionar
+                servidores, automatizar procesos con n8n y montar Odoo 19 desde cero.
+                Aprendi de companeros con mas experiencia y de cada proyecto que cayo
+                en mis manos.
               </>
             }
             primaryImageSrc="/projects/n8n-workflow.png"

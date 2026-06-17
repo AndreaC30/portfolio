@@ -45,11 +45,13 @@ export const personalInfo = {
   location: "Spain",
 }
 
-export const aboutText = `Empece a programar haciendo un ciclo de FP donde aprendi PHP. Pero fue al entrar como becaria en CIVIR cuando descubri todo lo demas. Mi jefe es ingeniero informatico, pero con tanto trabajo no le daba tiempo a ensenarme como le hubiera gustado. Asi que aprendi de mis companeros: Mario me enseno Docker, GitHub, a usar Cursor de verdad y la importancia de tener los repos bien organizados. Hasta un becario que llego despues me enseno sobre agentes IA y como usar Hermes con subagentes y skills.
+export const aboutText = `Empece a programar en un ciclo de Formacion Profesional, donde adquiri las bases del desarrollo de software. Al terminarlo, entre como becaria en CIVIR, mi primer trabajo como desarrolladora.
 
-En poco mas de un ano he pasado de no saber que era un contenedor a gestionar un VPS con varias aplicaciones en produccion. He montado Odoo 19 desde cero para empresas, he automatizado facturas con n8n que antes se hacian a mano, y he construido mis propios proyectos personales para seguir aprendiendo fuera del trabajo.
+En poco mas de un ano he pasado de no saber que era un contenedor a gestionar un VPS con varias aplicaciones en produccion. He tenido la suerte de trabajar con companeros con mas experiencia que me han ayudado a crecer: me ensenaron Docker, a usar Git correctamente, a sacarle partido a herramientas como Cursor y a entender el potencial de los agentes de IA.
 
-No tengo un mentor formal ni un plan de carrera estructurado. Tengo curiosidad, companeros generosos y muchas ganas de seguir creciendo.`
+No vengo de un bootcamp ni de una carrera de ingenieria. Vengo de la FP, de la curiosidad y de aprender haciendo. Cada tecnologia que manejo la he aprendido porque habia un problema real que resolver: un servidor que configurar, una factura que automatizar, un ERP que montar desde cero.
+
+Ahora compagino mi trabajo en CIVIR con proyectos personales donde sigo aprendiendo por mi cuenta: FastAPI, React, Docker, n8n y todo lo que me permita seguir mejorando como desarrolladora.`
 
 export const journey: JourneyStep[] = [
   {
@@ -62,13 +64,13 @@ export const journey: JourneyStep[] = [
     year: "2024",
     title: "Becaria en CIVIR",
     description:
-      "EntrE como becaria sin saber apenas nada de desarrollo web. Empece a tocar Python, React, Odoo y Docker. Aprendi de mis companeros Mario y del becario que llego despues.",
+      "Entre como becaria y descubri el desarrollo web profesional. Empece a trabajar con Python, React, Odoo y Docker. Aprendi de companeros con mas experiencia.",
   },
   {
     year: "2025",
     title: "Full Stack Developer Junior",
     description:
-      "Me quedE trabajando en CIVIR. Automatice facturas con n8n, monte Odoo para RRHH y CRM, y empece a gestionar infraestructura Linux con Docker y Nginx.",
+      "Me quede trabajando en CIVIR. Automatice procesos con n8n, monte Odoo para RRHH y CRM, y empece a gestionar infraestructura Linux con Docker y Nginx.",
   },
   {
     year: "Ahora",
